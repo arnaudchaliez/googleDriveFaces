@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml">
+
+    <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="./template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+        <ui:define name="top">
+            top
+        </ui:define>
+
+        <ui:define name="body">
+        
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Title:"/>
+                    <h:outputText value="#{filmController.selected.title}" title="Title"/>
+                    <h:outputText value="Description"/>
+                    <h:outputText value="#{filmController.selected.description}" title="Description"/>
+                    <h:outputText value="Genre"/>
+                    <h:outputText value="#{filmController.category}"/>
+
+                    <h:outputText value="Cast"/>
+                    <h:outputText value="#{filmController.actors}"/>
+
+
+                    <h:outputText value="Film Length"/>
+                    <h:outputText value="#{filmController.selected.length} min" title="Film Length"/>
+
+                    <h:outputText value="Language"/>
+                    <h:outputText value="#{filmController.language}" title="Film Length"/>
+
+                    <h:outputText value="Release Year"/>
+                    <h:outputText value="#{filmController.selected.releaseYear}" title="Release Year">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Rental Duration"/>
+                    <h:outputText value="#{filmController.selected.rentalDuration}" title="Rental DUration"/>
+                    <h:outputText value="Rental Rate"/>
+                    <h:outputText value="#{filmController.selected.rentalRate}" title="Rental Rate"/>
+                    <h:outputText value="Replacement Cost"/>
+                    <h:outputText value="#{filmController.selected.replacementCost}" title="Replacement Cost"/>
+                    <h:outputText value="Rating"/>
+                    <h:outputText value="#{filmController.selected.rating}" title="Rating"/>
+                    <h:outputText value="Special Features"/>
+                    <h:outputText value="#{filmController.selected.specialFeatures}" title="Special Features"/>
+                    <h:outputText value="Last Update"/>
+                    <h:outputText value="#{filmController.selected.lastUpdate}" title="Last Update">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br/>
+                <br/>
+                <h:commandLink action="#{filmController.prepareList}" value="View All List"/>
+                <br/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</ui:composition>
