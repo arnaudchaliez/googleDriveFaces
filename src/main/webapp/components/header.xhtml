@@ -2,16 +2,16 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:zz="http://zzdrive.isima.fr/facelets"> 
+                xmlns:zzdrive="http://xmlns.jcp.org/jsf/composite/zzdrive"> 
     
     <h3 class="text-muted">
         <h:link value="#{msg['global.title']}" outcome="index" class="menuitem"/>
     </h3>
     
     <ul class="nav nav-justified">
-        <zz:menu-item value="Files" outcome="files"/>
-        <zz:menu-item value="Account" outcome="account"/>
-        <zz:menu-item value="About" outcome="about"/>
-        <zz:menu-item value="Logout" outcome="logout"/>
+        <zzdrive:menu-item value="Files" outcome="files"/>
+        <zzdrive:menu-item value="Account" outcome="account"/>
+        <zzdrive:menu-item value="About" outcome="about"/>
+        <zzdrive:menu-item value="Logout" action="#{loginBean.logout}" />
     </ul>
-</ui:composition>	
+</ui:composition>

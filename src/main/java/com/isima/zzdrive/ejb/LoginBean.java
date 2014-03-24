@@ -7,9 +7,12 @@
 package com.isima.zzdrive.ejb;
 
 import com.isima.zzdrive.jpa.User;
+import com.isima.zzdrive.services.UserService;
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
@@ -20,7 +23,11 @@ import org.primefaces.context.RequestContext;
  */
 @Singleton
 @LocalBean
+@ManagedBean(name="loginBean")
 public class LoginBean {
+    
+    @EJB
+    private UserService userService;
 
     private String username;  
       
@@ -44,10 +51,12 @@ public class LoginBean {
   
     public void login(ActionEvent actionEvent) {  
         RequestContext context = RequestContext.getCurrentInstance();  
-        FacesMessage msg = null;  
-        boolean loggedIn = false;  
-          
-        if(username != null && username.equals("admin") && password != null && password.equals("admin")) {  
+        FacesMessage msg = null;
+        boolean loggedIn = false;
+        
+        User user = userService.find(username, password);
+        
+        if(null != user) {  
             loggedIn = true;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);  
         } else {
@@ -56,6 +65,12 @@ public class LoginBean {
         }
         
         FacesContext.getCurrentInstance().addMessage(null, msg);  
-        context.addCallbackParam("loggedIn", loggedIn);  
+        context.addCallbackParam("loggedIn", loggedIn);
     }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index?faces-redirect=true";
+    }
+
 }
