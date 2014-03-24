@@ -12,33 +12,18 @@
         <h:outputStylesheet library="css" name="default.css" /> 
         <h:outputStylesheet library="css" name="cssLayout.css" /> 
         <h:outputStylesheet library="css" name="bootstrap.css" /> 
+        <h:outputStylesheet library="css" name="justified-nav.css" /> 
         <!--<h:outputStylesheet library="css" name="metrovibes.css" />-->
        
         <title>Facelets Template</title>
     </h:head>
 
     <h:body>
-
-        <h:panelGroup layout="block" id="top" class="navbar navbar-default">
-            <ui:insert name="header" >
-                <ui:include src="../components/header.xhtml" />
-            </ui:insert>
-        </h:panelGroup>
+        
+        
         <h:panelGroup layout="block" class="container">
-            <h:panelGroup layout="block" class="jumbotron">
-                <h:panelGroup layout="block" id="left">
-                    <ui:insert name="left">
-                         <ui:insert name="upload" >
-                            <ui:include src="../components/upload.xhtml" />
-                        </ui:insert>
-                    </ui:insert>
-                </h:panelGroup>
-                <h:panelGroup layout="block" id="content" class="left_content">
-                    <ui:insert name="body">Content</ui:insert>
-                </h:panelGroup>
-
-            </h:panelGroup>
-            <ui:include src="../components/footer.xhtml" />
+            <ui:insert name="body" >
+            </ui:insert>
         </h:panelGroup>
 
     </h:body>

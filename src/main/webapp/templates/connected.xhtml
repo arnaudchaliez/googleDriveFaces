@@ -1,0 +1,29 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="master.xhtml">
+
+    <ui:define name="body">
+        
+        <h:panelGroup layout="block" id="header" class="masthead">
+            <ui:insert name="header" >
+                <ui:include src="../components/header.xhtml" />
+            </ui:insert>
+        </h:panelGroup>
+            
+        <h:panelGroup layout="block" id="content">
+            <ui:insert name="content" >
+                <ui:insert name="content"></ui:insert>
+            </ui:insert>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" id="footer" class="navbar navbar-default">
+            <ui:insert name="footer" >
+                <ui:include src="../components/footer.xhtml" />
+            </ui:insert>
+        </h:panelGroup>
+        
+    </ui:define>
+
+</ui:composition>

@@ -4,6 +4,10 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        <param-name>facelets.LIBRARIES</param-name>
+        <param-value>/WEB-INF/zzdrive.taglib.xml</param-value>
+    </context-param>
     <!--<listener>
         <listener-class>org.primefaces.webapp.StartupServletContextListener</listener-class>
     </listener>-->
@@ -33,6 +37,7 @@
             30
         </session-timeout>
     </session-config>
+    
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
@@ -45,5 +50,6 @@
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>
    </filter-mapping>
+   
     
 </web-app>

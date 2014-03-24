@@ -3,10 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:composition template="templates/master.xhtml">
+    <ui:composition template="templates/connected.xhtml">
         
-        <ui:define name="body">
-            <h:outputText styleClass="h1" value="#{msg['home.label']}"/>
+        <ui:define name="content">
+            
+            <h:panelGroup layout="block" id="left">
+                <ui:insert name="left">
+                    <ui:include src="components/upload.xhtml" />
+                </ui:insert>
+            </h:panelGroup>
+            
         </ui:define>
         
     </ui:composition>
