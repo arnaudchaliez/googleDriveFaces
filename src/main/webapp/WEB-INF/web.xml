@@ -5,6 +5,11 @@
         <param-value>Development</param-value>
     </context-param>
     
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+    
     <error-page>
         <error-code>404</error-code>
         <location>/errors/404.xhtml</location>
