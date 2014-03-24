@@ -13,6 +13,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
@@ -21,8 +22,7 @@ import org.primefaces.context.RequestContext;
  *
  * @author Jeremy
  */
-@Singleton
-@LocalBean
+@SessionScoped
 @ManagedBean(name="loginBean")
 public class LoginBean {
     
@@ -31,7 +31,9 @@ public class LoginBean {
 
     private String username;  
       
-    private String password;  
+    private String password; 
+    
+    private User current;
       
     public String getUsername() {  
         return username;  
@@ -54,9 +56,9 @@ public class LoginBean {
         FacesMessage msg = null;
         boolean loggedIn = false;
         
-        User user = userService.find(username, password);
+        current = userService.find(username, password);
         
-        if(null != user) {  
+        if(null != current) {  
             loggedIn = true;
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);  
         } else {
@@ -73,4 +75,7 @@ public class LoginBean {
         return "index?faces-redirect=true";
     }
 
+    public boolean isLoggedIn() {
+        return current != null;
+    }
 }
