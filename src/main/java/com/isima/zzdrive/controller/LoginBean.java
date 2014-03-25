@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.isima.zzdrive.ejb;
+package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.jpa.User;
 import com.isima.zzdrive.services.UserService;

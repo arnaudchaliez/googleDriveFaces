@@ -18,7 +18,7 @@ public class FileHelper {
     Session session = null;
 
     public FileHelper() {
-        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+        this.session = HibernateUtil.getSessionFactory().openSession();
     }
     
     public List getFileUser(int inUserId) {

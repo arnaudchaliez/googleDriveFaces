@@ -6,6 +6,7 @@ package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.helper.FileHelper;
 import com.isima.zzdrive.jpa.File;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,7 +30,11 @@ public class FileController {
      * Creates a new instance of FileController
      */
     public FileController() {
-        //helper = new FileHelper();
+    }
+    
+    @PostConstruct
+    public void initialize() {
+        helper = new FileHelper();
     }
     
     public String returnHello() {
@@ -42,15 +47,23 @@ public class FileController {
         FacesContext.getCurrentInstance().addMessage(null, msg);  
         
         byte[] content = event.getFile().getContents();
+        String name = event.getFile().getFileName();
+        
+        System.out.println(name);
         System.out.println(content);
-        /* File file = new File();
-        file.setContent(content);*/
         
-       // helper.saveFile(file);
+        File file = new File(1, name, 0, "file", content, 1);
+       
+        try {
+            helper.saveFile(file);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
         
-        //msg = new FacesMessage("Succesful", event.getFile().getContents().toString() + " is uploaded.");  
+        msg = new FacesMessage("Succesful ", file.getName() + " is uploaded.");  
         
-        //FacesContext.getCurrentInstance().addMessage(null, msg); 
+        FacesContext.getCurrentInstance().addMessage(null, msg); 
     }  
     
 }

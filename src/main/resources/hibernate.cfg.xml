@@ -6,14 +6,14 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/zzdrive?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">isima</property>
+    <property name="hibernate.connection.password">0000</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="jpa/Access.hbm.xml"/>
-    <mapping resource="jpa/Directory.hbm.xml"/>
-    <mapping resource="jpa/User.hbm.xml"/>
-    <mapping resource="jpa/Role.hbm.xml"/>
-    <mapping resource="jpa/File.hbm.xml"/>
+    <mapping resource="com/isima/zzdrive/jpa/Access.hbm.xml"/>
+    <mapping resource="com/isima/zzdrive/jpa/Directory.hbm.xml"/>
+    <mapping resource="com/isima/zzdrive/jpa/User.hbm.xml"/>
+    <mapping resource="com/isima/zzdrive/jpa/Role.hbm.xml"/>
+    <mapping resource="com/isima/zzdrive/jpa/File.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
