@@ -96,3 +96,8 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
+
+## Others ##
+faces-config.NavData
+nb-configuration.xml
+ZZDrive.iml

@@ -5,7 +5,7 @@
 package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.helper.FileHelper;
-import com.isima.zzdrive.jpa.File;
+import com.isima.zzdrive.model.File;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;

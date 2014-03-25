@@ -6,18 +6,56 @@
 
 package com.isima.zzdrive.services;
 
-import com.isima.zzdrive.jpa.User;
-import javax.ejb.Singleton;
+import com.isima.zzdrive.dao.UserDAO;
+import com.isima.zzdrive.model.User;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Jeremy
  */
-@Singleton
+@Service("UserService")
+@Transactional(readOnly = true)
 public class UserService {
     
+    @Autowired
+    UserDAO userDAO;
+    
+    @Transactional(readOnly = false)
+    public void addUser(User user) {
+        getUserDAO().addUser(user);
+    }
+    
+    @Transactional(readOnly = false)
+    public void deleteUser(User user) {
+        getUserDAO().deleteUser(user);
+    }
+
+    @Transactional(readOnly = false)
+    public void updateUser(User user) {
+        getUserDAO().updateUser(user);
+    }
+
+    public User getUserById(int id) {
+        return getUserDAO().getUserById(id);
+    }
+
+    public List<User> getUsers() {
+        return getUserDAO().getUsers();
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+    
     public UserService() {
-        
     }
     
     public User find(String username, String password) {

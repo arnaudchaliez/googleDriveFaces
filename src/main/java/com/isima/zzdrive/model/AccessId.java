@@ -1,4 +1,4 @@
-package com.isima.zzdrive.jpa;
+package com.isima.zzdrive.model;
 // Generated 4 mars 2014 11:25:38 by Hibernate Tools 3.2.1.GA
 
 

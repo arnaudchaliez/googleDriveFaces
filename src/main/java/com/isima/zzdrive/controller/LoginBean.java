@@ -6,14 +6,12 @@
 
 package com.isima.zzdrive.controller;
 
-import com.isima.zzdrive.jpa.User;
+import com.isima.zzdrive.model.User;
 import com.isima.zzdrive.services.UserService;
-import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Singleton;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.context.RequestContext;
@@ -22,19 +20,20 @@ import org.primefaces.context.RequestContext;
  *
  * @author Jeremy
  */
-@SessionScoped
+@RequestScoped
 @ManagedBean(name="loginBean")
 public class LoginBean {
     
-    @EJB
+    @ManagedProperty("#{UserService}")
     private UserService userService;
+    
+    @ManagedProperty("#{userBean}")
+    private UserBean userBean;
 
     private String username;  
       
     private String password; 
-    
-    private User current;
-      
+
     public String getUsername() {  
         return username;  
     }
@@ -50,16 +49,33 @@ public class LoginBean {
     public void setPassword(String password) {  
         this.password = password;  
     }
+    
+    public UserService getUserService() {
+        return userService;
+    }
+    
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+    
+    public UserBean getUserBean() {
+        return userBean;
+    }
+    
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
+    }
   
     public void login(ActionEvent actionEvent) {  
         RequestContext context = RequestContext.getCurrentInstance();  
         FacesMessage msg = null;
         boolean loggedIn = false;
         
-        current = userService.find(username, password);
+        User current = getUserService().find(username, password);
         
         if(null != current) {  
             loggedIn = true;
+            userBean.setUsername(username);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);  
         } else {
             loggedIn = false;  
@@ -73,9 +89,5 @@ public class LoginBean {
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index?faces-redirect=true";
-    }
-
-    public boolean isLoggedIn() {
-        return current != null;
     }
 }

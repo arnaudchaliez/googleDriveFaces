@@ -4,7 +4,7 @@
  */
 package com.isima.zzdrive.helper;
 
-import com.isima.zzdrive.jpa.File;
+import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.services.HibernateUtil;
 import java.util.List;
 import javax.persistence.Query;

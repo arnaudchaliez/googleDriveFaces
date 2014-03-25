@@ -2,22 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 4 mars 2014 11:25:41 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="zzdrive" name="com.isima.zzdrive.jpa.File" table="file">
-    <id name="idfile" type="int">
-      <column name="idfile"/>
+  <class catalog="zzdrive" name="com.isima.zzdrive.model.Directory" table="directory">
+    <id name="iddirectory" type="int">
+      <column name="iddirectory"/>
       <generator class="assigned"/>
     </id>
     <property name="name" type="string">
-      <column name="name"/>
+      <column name="name" not-null="true"/>
     </property>
-    <property name="iddirectory" type="int">
-      <column name="iddirectory" not-null="true"/>
+    <property name="idparent" type="int">
+      <column name="idparent" not-null="true"/>
     </property>
-    <property name="type" type="string">
-      <column name="type" not-null="true"/>
-    </property>
-    <property name="content" type="binary">
-      <column name="content"/>
+    <property name="size" type="java.lang.Integer">
+      <column name="size"/>
     </property>
     <property name="idowner" type="int">
       <column name="idowner" not-null="true"/>

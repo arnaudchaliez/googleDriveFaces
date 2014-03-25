@@ -1,4 +1,4 @@
-package com.isima.zzdrive.jpa;
+package com.isima.zzdrive.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

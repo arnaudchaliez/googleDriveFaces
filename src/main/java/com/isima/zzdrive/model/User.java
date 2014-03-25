@@ -1,6 +1,4 @@
-package com.isima.zzdrive.jpa;
-// Generated 4 mars 2014 11:25:38 by Hibernate Tools 3.2.1.GA
-
+package com.isima.zzdrive.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,8 +22,7 @@ import javax.persistence.UniqueConstraint;
     ,catalog="zzdrive"
     , uniqueConstraints = @UniqueConstraint(columnNames="username") 
 )
-public class User  implements java.io.Serializable {
-
+public class User implements java.io.Serializable {
 
      private int iduser;
      private String username;
@@ -37,7 +34,6 @@ public class User  implements java.io.Serializable {
 
     public User() {
     }
-
 	
     public User(int iduser, String username, String password) {
         this.iduser = iduser;

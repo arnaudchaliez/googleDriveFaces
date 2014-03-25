@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 4 mars 2014 11:25:41 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="zzdrive" name="com.isima.zzdrive.jpa.Role" table="role">
+  <class catalog="zzdrive" name="com.isima.zzdrive.model.Role" table="role">
     <id name="idrole" type="int">
       <column name="idrole"/>
       <generator class="assigned"/>
@@ -14,7 +14,7 @@
       <key>
         <column name="idrole" not-null="true"/>
       </key>
-      <many-to-many entity-name="com.isima.zzdrive.jpa.User">
+      <many-to-many entity-name="com.isima.zzdrive.model.User">
         <column name="iduser" not-null="true"/>
       </many-to-many>
     </set>
