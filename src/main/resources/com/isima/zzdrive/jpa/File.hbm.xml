@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 4 mars 2014 11:25:41 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="zzdrive" name="jpa.File" table="file">
+  <class catalog="zzdrive" name="com.isima.zzdrive.jpa.File" table="file">
     <id name="idfile" type="int">
       <column name="idfile"/>
       <generator class="assigned"/>

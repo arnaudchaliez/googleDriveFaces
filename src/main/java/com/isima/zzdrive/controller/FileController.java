@@ -7,6 +7,7 @@ package com.isima.zzdrive.controller;
 import com.isima.zzdrive.helper.FileHelper;
 import com.isima.zzdrive.jpa.File;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,9 +23,8 @@ import org.primefaces.event.FileUploadEvent;
 @SessionScoped
 public class FileController {
 
-    DataModel fileModel;
+    //DataModel fileModel;
     FileHelper helper;
-    public static final String toto = "blabla";
     
     /**
      * Creates a new instance of FileController
