@@ -59,11 +59,12 @@ public class UserService {
     }
     
     public User find(String username, String password) {
-        if(username != null && username.equals("admin") && password != null && password.equals("admin")) { 
+        User user = userDAO.getUserByCredentials(username, password);
+        /*if(username != null && username.equals("admin") && password != null && password.equals("admin")) { 
             User user = new User();
             return user;
-        }
-        return null;
+        }*/
+        return user;
     }
     
 }
