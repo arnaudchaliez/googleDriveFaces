@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public class UserDAO  {
     @Autowired
-    private SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
