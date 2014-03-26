@@ -1,15 +1,103 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="templates/connected.xhtml">
-        
+
         <ui:define name="content">
-            
-            Account
-            
+
+            <h:panelGroup class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 home-form" layout="block">
+                <h:panelGroup class="panel panel-info" layout="block">
+                    <h:panelGroup class="panel-heading" layout="block">
+                        <h:panelGroup class="panel-title" layout="block">
+                            #{msg['user.account.manage']} - #{userController.firstName} #{userController.lastName}
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="panel-body" layout="block">
+
+                        <!-- Informations block -->
+                        <h:form id="formInfos" class="form-horizontal">
+                            <p:growl id="growlInfos" showDetail="true" life="3000" />
+
+                            <h:panelGroup class="form-group" layout="block">
+                                <p:outputLabel for="firstname" value="#{msg['user.firstname']}" styleClass="col-md-3 control-label" />  
+                                <h:panelGroup class="col-md-9" layout="block">
+                                    <p:inputText value="#{userController.firstName}" styleClass="form-control"  
+                                                 id="firstname" required="true" /> 
+                                </h:panelGroup>
+                            </h:panelGroup> 
+
+                            <h:panelGroup class="form-group" layout="block">
+                                <p:outputLabel for="lastname" value="#{msg['user.lastname']}" styleClass="col-md-3 control-label" />  
+                                <h:panelGroup class="col-md-9" layout="block">
+                                    <p:inputText value="#{userController.lastName}" styleClass="form-control"  
+                                                 id="lastname" required="true" /> 
+                                </h:panelGroup>
+                            </h:panelGroup>
+
+                            <p:commandButton id="updateInfosButton" value="#{msg['user.update.infos']}" update="growlInfos"
+                                             actionListener="#{userController.updateInfos}" styleClass="btn btn-success"
+                                             oncomplete="handleRegisterRequest(xhr, status, args)"/>
+                        </h:form>
+
+                        <!-- Password block -->
+                        <h:form id="formPassword" class="form-horizontal">
+                            <p:growl id="growlPassword" showDetail="true" life="3000" />
+
+                            <h:panelGroup class="form-group" layout="block">
+                                <p:outputLabel for="password" value="#{msg['user.password']}" styleClass="col-md-3 control-label" />  
+                                <h:panelGroup class="col-md-9" layout="block">
+                                    <p:password styleClass="form-control" match="passwordconf" value="#{userController.password}"
+                                                validator="#{userController.validatePassword}" id="password" required="true" /> 
+                                </h:panelGroup>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="form-group" layout="block">
+                                <p:outputLabel for="passwordconf" value="#{msg['user.password.conf']}" styleClass="col-md-3 control-label" />  
+                                <h:panelGroup class="col-md-9" layout="block">
+                                    <p:password styleClass="form-control" value="#{userController.password}"
+                                                id="passwordconf" required="true" /> 
+                                </h:panelGroup>
+                            </h:panelGroup>
+
+                            <p:commandButton id="updatePwdButton" value="#{msg['user.update.password']}" update="growlPassword"
+                                             actionListener="#{userController.updatePassword}" styleClass="btn btn-success"
+                                             oncomplete="handleRegisterRequest(xhr, status, args)"/>
+
+                        </h:form>
+
+                        <!-- Language block -->
+                        <h:form id="formLocaleCode" class="form-horizontal">
+                            <p:growl id="growlLanguage" showDetail="true" life="3000" />
+                            
+                            <p:outputLabel for="language" value="#{msg['user.language']}" styleClass="col-md-3 control-label" />  
+                            <h:panelGroup class="col-md-9" layout="block">
+                                <h:selectOneMenu value="#{userController.localeCode}" id="language" class="form-control">
+                                    <f:selectItems value="#{languageController.countriesInMap}" /> 
+                                </h:selectOneMenu>
+                            </h:panelGroup>
+
+                            <p:commandButton id="updateLangButton" value="#{msg['user.update.language']}" update="growlLanguage"
+                                             actionListener="#{userController.updateLocaleCode}" styleClass="btn btn-success"
+                                             oncomplete="handleRegisterRequest(xhr, status, args)"/>
+                        </h:form>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+
+            <script type="text/javascript">
+                function handleRegisterRequest(xhr, status, args) {
+                    console.log(args);
+                    if (args.validationFailed || !args.updated) {
+                        $('#form').effect("shake", {times: 3}, 200);
+                    }
+                }
+            </script>  
         </ui:define>
-        
+
     </ui:composition>
 </html>

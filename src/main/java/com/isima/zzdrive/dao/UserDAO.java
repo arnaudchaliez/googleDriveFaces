@@ -36,7 +36,10 @@ public class UserDAO  {
         List list = getSessionFactory().getCurrentSession()
                                             .createQuery("from User where id=?")
                                             .setParameter(0, id).list();
-        return (User)list.get(0);
+        if(list.size() > 0) {
+            return (User)list.get(0);
+        }
+        return null;
     }
     
     public User getUserByUsername(String username) {

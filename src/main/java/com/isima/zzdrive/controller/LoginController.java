@@ -35,6 +35,11 @@ public class LoginController {
 
     @Getter
     @Setter
+    @ManagedProperty("#{languageController}")
+    private LanguageController languageController;
+
+    @Getter
+    @Setter
     private String username;
 
     @Getter
@@ -52,6 +57,7 @@ public class LoginController {
             loggedIn = true;
             userBean.setUsername(username);
             userBean.setIdUser(current.getIduser());
+            languageController.setLocaleCode(current.getLocaleCode());
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
         } else {
             loggedIn = false;

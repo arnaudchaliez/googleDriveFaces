@@ -1,5 +1,9 @@
 .home-form .input-group, .home-form .form-group {
-    margin-bottom : 15px ;
+    margin : 15px 0px;
+}
+
+.home-form button {
+    margin-bottom : 30px;
 }
 
 .home-form {
@@ -7,7 +11,6 @@
 }
 
 .home-form .box-footer {
-    margin-top: 20px;
     border-top: 1px solid #888; 
     padding-top: 15px; 
     font-size: 85%;

@@ -51,6 +51,9 @@ public class User implements java.io.Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "localecode")
+    private String localeCode;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "userrole", catalog = "zzdrive", joinColumns = {
         @JoinColumn(name = "iduser", nullable = false, updatable = false)}, inverseJoinColumns = {
@@ -95,8 +98,6 @@ public class User implements java.io.Serializable {
         if (null == password || password.isEmpty()) {
             return false;
         }
-        System.out.println("---------------- password -----------------");
-        System.out.println(this.computeHash(password));
         return this.getPassword().equals(this.computeHash(password));
     }
 
@@ -127,6 +128,10 @@ public class User implements java.io.Serializable {
         return password;
     }
 
+    public String getLocaleCode() {
+        return localeCode;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -153,6 +158,10 @@ public class User implements java.io.Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setLocaleCode(String localeCode) {
+        this.localeCode = localeCode;
     }
 
     public void setRoles(Set<Role> roles) {
