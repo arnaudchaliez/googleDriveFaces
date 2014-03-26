@@ -1,0 +1,16 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="master.xhtml">
+
+    <ui:define name="body">
+        
+        <h:outputText styleClass="h1" value="#{msg['home.label']}"/>
+        
+        <ui:insert name="content">
+        </ui:insert>
+        
+    </ui:define>
+
+</ui:composition>

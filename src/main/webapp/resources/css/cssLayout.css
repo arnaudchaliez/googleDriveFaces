@@ -1,3 +1,17 @@
+.home-form .input-group, .home-form .form-group {
+    margin-bottom : 15px ;
+}
+
+.home-form {
+    margin-top : 30px;
+}
+
+.home-form .box-footer {
+    margin-top: 20px;
+    border-top: 1px solid #888; 
+    padding-top: 15px; 
+    font-size: 85%;
+}
 /*
 #top {
     position: relative;

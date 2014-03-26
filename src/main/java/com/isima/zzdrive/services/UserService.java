@@ -8,6 +8,8 @@ package com.isima.zzdrive.services;
 
 import com.isima.zzdrive.dao.UserDAO;
 import com.isima.zzdrive.model.User;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,11 +61,18 @@ public class UserService {
     }
     
     public User find(String username, String password) {
-        User user = userDAO.getUserByCredentials(username, password);
-        /*if(username != null && username.equals("admin") && password != null && password.equals("admin")) { 
-            User user = new User();
-            return user;
-        }*/
+        User user = userDAO.getUserByUsername(username);
+        if(null != username) {
+            try {
+                return user.checkPasswordForLogin(password) ? user : null;
+            }
+            catch(InvalidKeySpecException e) {
+                return null;
+            }
+            catch(NoSuchAlgorithmException e) {
+                return null;
+            }
+        }
         return user;
     }
     

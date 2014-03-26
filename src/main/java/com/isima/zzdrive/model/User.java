@@ -1,7 +1,13 @@
 package com.isima.zzdrive.model;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,13 +30,13 @@ import javax.persistence.UniqueConstraint;
 )
 public class User implements java.io.Serializable {
 
-     private int iduser;
-     private String username;
-     private String firstname;
-     private String lastname;
-     private String password;
-     private Set<Role> roles = new HashSet<Role>(0);
-     private Set<Access> accesses = new HashSet<Access>(0);
+    private int iduser;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private String password;
+    private Set<Role> roles = new HashSet<Role>(0);
+    private Set<Access> accesses = new HashSet<Access>(0);
 
     public User() {
     }
@@ -40,6 +46,7 @@ public class User implements java.io.Serializable {
         this.username = username;
         this.password = password;
     }
+    
     public User(int iduser, String username, String firstname, String lastname, String password, Set<Role> roles, Set<Access> accesses) {
        this.iduser = iduser;
        this.username = username;
@@ -50,8 +57,7 @@ public class User implements java.io.Serializable {
        this.accesses = accesses;
     }
    
-     @Id 
-    
+    @Id
     @Column(name="iduser", unique=true, nullable=false)
     public int getIduser() {
         return this.iduser;
@@ -96,10 +102,12 @@ public class User implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinTable(name="userrole", catalog="zzdrive", joinColumns = { 
+    
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinTable(name="userrole", catalog="zzdrive", joinColumns = {
         @JoinColumn(name="iduser", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="idrole", nullable=false, updatable=false) })
+        @JoinColumn(name="idrole", nullable=false, updatable=false) }
+    )
     public Set<Role> getRoles() {
         return this.roles;
     }
@@ -107,7 +115,8 @@ public class User implements java.io.Serializable {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+    
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
     public Set<Access> getAccesses() {
         return this.accesses;
     }
@@ -116,9 +125,24 @@ public class User implements java.io.Serializable {
         this.accesses = accesses;
     }
 
+    public void setPasswordToHash(String passwordPlaintext) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        this.setPassword(this.computeHash(passwordPlaintext));
+    }
 
+    public boolean checkPasswordForLogin(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        if (null == password || password.isEmpty()) {
+            return false;
+        }
+        System.out.println(this.computeHash(password));
+        return this.getPassword().equals(this.computeHash(password));
+    }
 
-
+    private String computeHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), Integer.toString(this.getIduser()).getBytes(), 2048, 160);
+        SecretKeyFactory fact = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        
+        return Base64.getEncoder().encodeToString(fact.generateSecret(spec).getEncoded());
+    }
 }
 
 

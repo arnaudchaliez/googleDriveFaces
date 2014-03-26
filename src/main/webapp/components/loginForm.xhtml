@@ -2,30 +2,52 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://java.sun.com/jsf/core">
-    <div>
-        User:admin / Password:admin
-    </div>
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
     
-    <h:form id="form">
-        <p:growl id="growl" showDetail="true" life="3000" />  
+    <h:panelGroup class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 home-form" layout="block">
+        <h:panelGroup class="panel panel-info" layout="block">
+            <h:panelGroup class="panel-heading" layout="block">
+                <h:panelGroup class="panel-title" layout="block">
+                    #{msg['home.signin']}
+                </h:panelGroup>
+            </h:panelGroup>
+            
+            <h:panelGroup class="panel-body" layout="block">
+                <h:form id="form">
+                    <p:growl id="growl" showDetail="true" life="3000" />  
 
-        <h:panelGrid columns="2" cellpadding="5">  
-            <h:outputLabel for="username" value="Username:" />  
-            <p:inputText value="#{loginBean.username}"   
-                    id="username" required="true" label="username" />  
+                    <h:panelGroup class="input-group" layout="block">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <p:inputText value="#{loginBean.username}" styleClass="form-control"  
+                                id="username" required="true" />  
+                        <p:watermark for="username" value="#{msg['user.username']}" />  
+                    </h:panelGroup>
 
-            <h:outputLabel for="password" value="Password:" />  
-            <h:inputSecret value="#{loginBean.password}"   
-                    id="password" required="true" label="password" />  
+                    <h:panelGroup class="input-group" layout="block">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <p:password value="#{loginBean.password}" styleClass="form-control"   
+                                id="password" required="true" />  
+                        <p:watermark for="password" value="#{msg['user.password']}" />  
+                    </h:panelGroup> 
 
-            <f:facet name="footer">  
-                <p:commandButton id="loginButton" value="Login" update="growl"   
-                    actionListener="#{loginBean.login}"   
-                    oncomplete="handleLoginRequest(xhr, status, args)"/>  
-            </f:facet> 
-        </h:panelGrid>
-    </h:form>
+                    <p:commandButton id="loginButton" value="#{msg['home.login']}" update="growl"
+                                     actionListener="#{loginBean.login}" styleClass="btn btn-success"
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    
+                    <h:panelGroup class="form-group" layout="block">
+                        <h:panelGroup class="col-md-12 control" layout="block">
+                            <h:panelGroup layout="block" styleClass="box-footer">
+                                #{msg['home.noaccount']}
+                                <h:link outcome="signup" value="#{msg['home.signup.here']}"/>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    
+                </h:form>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:panelGroup>
 
     <script type="text/javascript">  
         function handleLoginRequest(xhr, status, args) {  

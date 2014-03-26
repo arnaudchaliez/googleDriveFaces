@@ -49,6 +49,17 @@ public class UserDAO  {
         return (User)list.get(0);
     }
     
+    public User getUserByUsername(String username) {
+        List list = getSessionFactory().getCurrentSession()
+                                            .createQuery("from User where username=:username")
+                                            .setParameter("username", username)
+                                            .list();
+        if(list.size() > 0) {
+            return (User)list.get(0);
+        }
+        return null;
+    }
+    
     public User getUserByCredentials(String username, String password) {
         List list = getSessionFactory().getCurrentSession()
                                             .createQuery("from User where username=:username and password=:password")
