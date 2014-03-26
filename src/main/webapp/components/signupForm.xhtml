@@ -20,15 +20,15 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="username" value="#{msg['user.username']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:inputText value="" styleClass="form-control"  
-                                    id="username" required="true" /> 
+                            <p:inputText value="#{registerBean.username}" styleClass="form-control"  
+                                         id="username" required="true" validator="#{registerBean.validateUsername}"/> 
                         </h:panelGroup>
                     </h:panelGroup> 
 
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="firstname" value="#{msg['user.firstname']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:inputText value="" styleClass="form-control"  
+                            <p:inputText value="#{registerBean.firstName}" styleClass="form-control"  
                                     id="firstname" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup> 
@@ -36,7 +36,7 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="lastname" value="#{msg['user.lastname']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:inputText value="" styleClass="form-control"  
+                            <p:inputText value="#{registerBean.lastName}" styleClass="form-control"  
                                     id="lastname" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup> 
@@ -44,7 +44,7 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="password" value="#{msg['user.password']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:password styleClass="form-control" match="passwordconf" value=""
+                            <p:password styleClass="form-control" match="passwordconf" value="#{registerBean.password}"
                                     id="password" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup>
@@ -52,15 +52,15 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="passwordconf" value="#{msg['user.password']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:password styleClass="form-control" value=""
+                            <p:password styleClass="form-control" value="#{registerBean.password}"
                                     id="passwordconf" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup>
                     
 
                     <p:commandButton id="loginButton" value="#{msg['home.signup']}" update="growl"
-                                     actionListener="#{loginBean.login}" styleClass="btn btn-success"
-                                     oncomplete="handleLoginRequest(xhr, status, args)"/>
+                                     actionListener="#{registerBean.register}" styleClass="btn btn-success"
+                                     oncomplete="handleRegisterRequest(xhr, status, args)"/>
                     
                     <h:panelGroup class="form-group" layout="block">
                         <h:panelGroup class="col-md-12 control" layout="block">
@@ -77,13 +77,13 @@
     </h:panelGroup>
 
     <script type="text/javascript">  
-        function handleLoginRequest(xhr, status, args) {  
+        function handleRegisterRequest(xhr, status, args) {  
             console.log(args);
-            if(args.validationFailed || !args.loggedIn) { 
+            if (args.validationFailed || !args.registered) { 
                 $('#form').effect("shake", { times:3 }, 200);
             }
             else {
-                window.location.replace("files.xhtml");
+                window.location.replace("index.xhtml");
             }
         }  
     </script>  

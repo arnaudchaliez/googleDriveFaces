@@ -11,6 +11,8 @@ import com.isima.zzdrive.model.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class UserService {
     
+    @Getter
+    @Setter
     @Autowired
     UserDAO userDAO;
     
@@ -48,16 +52,12 @@ public class UserService {
         return getUserDAO().getUserById(id);
     }
 
+    public User getUserByUsername(String username) {
+        return getUserDAO().getUserByUsername(username);
+    }
+
     public List<User> getUsers() {
         return getUserDAO().getUsers();
-    }
-
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
     }
     
     public User find(String username, String password) {

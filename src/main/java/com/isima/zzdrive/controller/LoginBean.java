@@ -14,6 +14,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import lombok.Getter;
+import lombok.Setter;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -24,47 +26,23 @@ import org.primefaces.context.RequestContext;
 @ManagedBean(name="loginBean")
 public class LoginBean {
     
+    @Getter
+    @Setter
     @ManagedProperty("#{UserService}")
     private UserService userService;
     
+    @Getter
+    @Setter
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
 
+    @Getter
+    @Setter
     private String username;  
       
-    private String password; 
-
-    public String getUsername() {  
-        return username;  
-    }
-  
-    public void setUsername(String username) {  
-        this.username = username;  
-    }
-  
-    public String getPassword() {  
-        return password;  
-    }
-  
-    public void setPassword(String password) {  
-        this.password = password;  
-    }
-    
-    public UserService getUserService() {
-        return userService;
-    }
-    
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-    
-    public UserBean getUserBean() {
-        return userBean;
-    }
-    
-    public void setUserBean(UserBean userBean) {
-        this.userBean = userBean;
-    }
+    @Getter
+    @Setter
+    private String password;
   
     public void login(ActionEvent actionEvent) {  
         RequestContext context = RequestContext.getCurrentInstance();  

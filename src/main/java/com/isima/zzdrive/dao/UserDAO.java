@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.isima.zzdrive.model.User;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -19,16 +21,10 @@ import java.util.List;
  */
 @Repository
 public class UserDAO  {
+    @Getter
+    @Setter
     @Autowired
     SessionFactory sessionFactory;
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     public void addUser(User user) {
         getSessionFactory().getCurrentSession().save(user);
