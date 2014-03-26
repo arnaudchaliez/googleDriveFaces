@@ -51,7 +51,12 @@ public class UserController implements Serializable {
     public UserService getUserService() {
         return userService;
     }
-     public int getId() {
+    
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+    
+    public int getId() {
         return id;
     }
 

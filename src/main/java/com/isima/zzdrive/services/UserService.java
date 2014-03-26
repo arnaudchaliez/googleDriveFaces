@@ -24,6 +24,9 @@ public class UserService {
     @Autowired
     UserDAO userDAO;
     
+    public UserService() {
+    }
+    
     @Transactional(readOnly = false)
     public void addUser(User user) {
         getUserDAO().addUser(user);
@@ -53,9 +56,6 @@ public class UserService {
 
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
-    }
-    
-    public UserService() {
     }
     
     public User find(String username, String password) {

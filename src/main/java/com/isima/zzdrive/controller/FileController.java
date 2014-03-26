@@ -4,13 +4,12 @@
  */
 package com.isima.zzdrive.controller;
 
-import com.isima.zzdrive.helper.FileHelper;
+import com.isima.zzdrive.services.FileService;
 import com.isima.zzdrive.model.File;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+import com.isima.zzdrive.services.FileService;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import org.primefaces.event.FileUploadEvent;
@@ -24,17 +23,15 @@ import org.primefaces.event.FileUploadEvent;
 public class FileController {
 
     //DataModel fileModel;
-    FileHelper helper;
+    @ManagedProperty("#{FileService}")
+    FileService fileService;
     
-    /**
-     * Creates a new instance of FileController
-     */
-    public FileController() {
+    public FileService getFileService() {
+        return fileService;
     }
     
-    //@PostConstruct
-    public void initialize() {
-        helper = new FileHelper();
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
     }
     
     public String returnHello() {
@@ -55,7 +52,7 @@ public class FileController {
         File file = new File(1, name, 0, "file", content, 1);
        
         try {
-            helper.saveFile(file);
+            fileService.saveFile(file);
         }
         catch(Exception e) {
             System.out.println(e);
