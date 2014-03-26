@@ -22,16 +22,19 @@ public class File implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idfile")
     private int idfile;
+    
     @Column(name = "name")
     private String name;
+    
     @Column(name = "iddirectory", nullable = false)
     private int iddirectory;
+    
     @Column(name = "type", nullable = false)
     private String type;
-    @Column(name = "content", length = 1000000)
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
+    
     @Column(name = "idowner", nullable = false)
     private int idowner;
 
@@ -53,7 +56,7 @@ public class File implements java.io.Serializable {
     }
 
     public int getIdfile() {
-        return this.idfile;
+        return idfile;
     }
 
     public void setIdfile(int idfile) {
@@ -61,7 +64,7 @@ public class File implements java.io.Serializable {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -69,7 +72,7 @@ public class File implements java.io.Serializable {
     }
 
     public int getIddirectory() {
-        return this.iddirectory;
+        return iddirectory;
     }
 
     public void setIddirectory(int iddirectory) {
@@ -77,7 +80,7 @@ public class File implements java.io.Serializable {
     }
 
     public String getType() {
-        return this.type;
+        return type;
     }
 
     public void setType(String type) {
@@ -85,7 +88,7 @@ public class File implements java.io.Serializable {
     }
 
     public byte[] getContent() {
-        return this.content;
+        return content;
     }
 
     public void setContent(byte[] content) {
@@ -93,7 +96,7 @@ public class File implements java.io.Serializable {
     }
 
     public int getIdowner() {
-        return this.idowner;
+        return idowner;
     }
 
     public void setIdowner(int idowner) {

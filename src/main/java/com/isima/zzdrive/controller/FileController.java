@@ -4,15 +4,15 @@
  */
 package com.isima.zzdrive.controller;
 
-import com.isima.zzdrive.services.FileService;
 import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.services.FileService;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import lombok.Getter;
+import lombok.Setter;
 import org.primefaces.event.FileUploadEvent;
 
 /**
@@ -24,16 +24,10 @@ import org.primefaces.event.FileUploadEvent;
 public class FileController {
 
     //DataModel fileModel;
+    @Getter
+    @Setter
     @ManagedProperty("#{FileService}")
     FileService fileService;
-
-    public FileService getFileService() {
-        return fileService;
-    }
-
-    public void setFileService(FileService fileService) {
-        this.fileService = fileService;
-    }
 
     public List<File> filesUser() {
         /*
@@ -57,7 +51,7 @@ public class FileController {
 
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = null;
-      
+ 
         byte[] content = event.getFile().getContents();
         String name = event.getFile().getFileName();
 

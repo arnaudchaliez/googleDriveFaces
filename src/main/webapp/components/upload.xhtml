@@ -4,7 +4,7 @@
     <h:form enctype="multipart/form-data" id="upload-form">
                     
         <p:fileUpload fileUploadListener="#{fileController.handleFileUpload}" mode="advanced" dragDropSupport="true"  
-                      update="messages" sizeLimit="100000000" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx|rar|zip|(r|t)ar.?.?)$/" />  
+                       update="messages" sizeLimit="100000000" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx|rar|zip|(r|t)ar.?.?)$/" />  
         <p:growl id="messages" showDetail="true"/>  
         
     </h:form>

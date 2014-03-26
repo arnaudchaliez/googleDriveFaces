@@ -14,6 +14,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -24,16 +26,24 @@ import javax.faces.bean.RequestScoped;
 public class UserController implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    private static final String SUCCESS = "success";
-    private static final String ERROR   = "error";
 
+    @Getter
+    @Setter
     @ManagedProperty(value="#{UserService}")
     UserService userService;
 
     List<User> userList;
     
+    @Getter
+    @Setter
     private int id;
+    
+    @Getter
+    @Setter
     private String name;
+    
+    @Getter
+    @Setter
     private String surname;
     
     public void reset() {
@@ -46,37 +56,5 @@ public class UserController implements Serializable {
         userList = new ArrayList<User>();
         userList.addAll(getUserService().getUsers());
         return userList;
-    }
-    
-    public UserService getUserService() {
-        return userService;
-    }
-    
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 }

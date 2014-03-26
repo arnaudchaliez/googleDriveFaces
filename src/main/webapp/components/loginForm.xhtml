@@ -51,8 +51,7 @@
 
     <script type="text/javascript">  
         function handleLoginRequest(xhr, status, args) {  
-            console.log(args);
-            if(args.validationFailed || !args.loggedIn) { 
+            if (args.validationFailed || !args.loggedIn) { 
                 $('#form').effect("shake", { times:3 }, 200);
             }
             else {

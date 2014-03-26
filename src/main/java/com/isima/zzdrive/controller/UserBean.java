@@ -9,6 +9,8 @@ package com.isima.zzdrive.controller;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -18,26 +20,15 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class UserBean implements Serializable {
 
+    @Getter
+    @Setter
     private String username;    
-    private int iduser;
-
-    public String getUsername() {  
-        return username;  
-    }
-  
-    public void setUsername(String username) {  
-        this.username = username;  
-    }
     
-     public String getIdUser() {  
-        return username;  
-    }
-  
-    public void setIdUser(int idUser) {  
-        this.iduser = idUser;  
-    }
+    @Getter
+    @Setter
+    private int idUser;
 
     public boolean isLogged() {
-        return username != null;
+        return getUsername() != null;
     }
 }

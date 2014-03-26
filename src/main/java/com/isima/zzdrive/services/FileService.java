@@ -7,6 +7,8 @@ package com.isima.zzdrive.services;
 import com.isima.zzdrive.dao.FileDAO;
 import com.isima.zzdrive.model.File;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,18 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class FileService {
     
+    @Getter
+    @Setter
     @Autowired
     FileDAO fileDAO;
     
     public FileService() {
-    }
-
-    public FileDAO getFileDAO() {
-        return fileDAO;
-    }
-
-    public void setUserDAO(FileDAO fileDAO) {
-        this.fileDAO = fileDAO;
     }
     
     public List getFileUser(int idUser) {
