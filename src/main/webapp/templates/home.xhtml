@@ -5,12 +5,16 @@
     template="master.xhtml">
 
     <ui:define name="body">
-        
-        <h:outputText styleClass="h1" value="#{msg['home.label']}"/>
-        
+        <h:panelGroup layout="block" class="presentation masthead jumbotron">
+            <h:panelGroup layout="block" class="container">
+                <h:outputText styleClass="title" value="#{msg['global.title']}" />
+                <h:outputText styleClass="subtitle" value="#{msg['home.label']}" />      
+            </h:panelGroup>
+        </h:panelGroup>
+
         <ui:insert name="content">
         </ui:insert>
-        
+
     </ui:define>
 
 </ui:composition>

@@ -28,7 +28,7 @@ public class File implements java.io.Serializable {
     private int iddirectory;
     @Column(name = "type", nullable = false)
     private String type;
-    @Column(name = "content", length = 100000)
+    @Column(name = "content", length = 1000000)
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;

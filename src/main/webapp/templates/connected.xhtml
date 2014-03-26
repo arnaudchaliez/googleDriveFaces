@@ -5,25 +5,25 @@
     template="master.xhtml">
 
     <ui:define name="body">
-        
-        <h:panelGroup layout="block" id="header" class="masthead">
-            <ui:insert name="header" >
-                <ui:include src="../components/header.xhtml" />
-            </ui:insert>
-        </h:panelGroup>
-            
-        <h:panelGroup layout="block" id="content">
-            <ui:insert name="content" >
-                <ui:insert name="content"></ui:insert>
-            </ui:insert>
-        </h:panelGroup>
+        <h:panelGroup layout="block" class="container">
+            <h:panelGroup layout="block" id="header" class="masthead">
+                <ui:insert name="header" >
+                    <ui:include src="../components/header.xhtml" />
+                </ui:insert>
+            </h:panelGroup>
 
-        <h:panelGroup layout="block" id="footer" class="navbar navbar-default">
+            <h:panelGroup layout="block" id="content">
+                <ui:insert name="content" >
+                    <ui:insert name="content"></ui:insert>
+                </ui:insert>
+            </h:panelGroup>
+        </h:panelGroup>     
+        <h:panelGroup layout="block" id="footer">
             <ui:insert name="footer" >
                 <ui:include src="../components/footer.xhtml" />
             </ui:insert>
         </h:panelGroup>
-        
+
     </ui:define>
 
 </ui:composition>

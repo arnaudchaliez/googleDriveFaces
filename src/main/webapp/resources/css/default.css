@@ -4,6 +4,7 @@ body {
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     color: #000000;  
     margin: 10px;
+    padding-top: 0px !important;
 }
 
 h1 {
@@ -14,6 +15,26 @@ h1 {
     margin: 0px;
     padding: 0px;
     color: #D20005;
+}
+
+.jumbotron {
+    /*background-color: #A0D468 !important*/
+    background-color: #8CC152 !important;
+    color: #ffffff !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+
+.masthead .title {
+    font-size: 120px;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+.masthead .subtitle {
+    font-size: 40px;
+    font-weight: 200;
+    line-height: 1.25;
+    display: block;
 }
 /*
 a:link, a:visited {
