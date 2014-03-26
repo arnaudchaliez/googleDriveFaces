@@ -19,20 +19,20 @@
 
                     <h:panelGroup class="input-group" layout="block">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <p:inputText value="#{loginBean.username}" styleClass="form-control"  
+                        <p:inputText value="#{loginController.username}" styleClass="form-control"  
                                 id="username" required="true" />  
                         <p:watermark for="username" value="#{msg['user.username']}" />  
                     </h:panelGroup>
 
                     <h:panelGroup class="input-group" layout="block">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <p:password value="#{loginBean.password}" styleClass="form-control"   
+                        <p:password value="#{loginController.password}" styleClass="form-control"   
                                 id="password" required="true" />  
                         <p:watermark for="password" value="#{msg['user.password']}" />  
                     </h:panelGroup> 
 
                     <p:commandButton id="loginButton" value="#{msg['home.login']}" update="growl"
-                                     actionListener="#{loginBean.login}" styleClass="btn btn-success"
+                                     actionListener="#{loginController.login}" styleClass="btn btn-success"
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>
                     
                     <h:panelGroup class="form-group" layout="block">

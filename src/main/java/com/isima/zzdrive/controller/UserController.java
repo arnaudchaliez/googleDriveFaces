@@ -1,60 +1,105 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
-
 package com.isima.zzdrive.controller;
 
-import com.isima.zzdrive.services.UserService;
 import com.isima.zzdrive.model.User;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import com.isima.zzdrive.service.UserService;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.ResourceBundle;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.faces.validator.ValidatorException;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.context.RequestContext;
+import javax.faces.bean.ViewScoped;
 
-/**
- *
- * @author Jeremy
- */
-@ManagedBean(name="user")
-@RequestScoped
-public class UserController implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
+@ViewScoped
+@ManagedBean(name = "userController")
+public class UserController {
+
+    @ManagedProperty("#{UserService}")
+    @Getter
+    @Setter
+    private UserService userService;
 
     @Getter
     @Setter
-    @ManagedProperty(value="#{UserService}")
-    UserService userService;
+    @ManagedProperty("#{msg}")
+    private ResourceBundle msg;
 
-    List<User> userList;
-    
     @Getter
     @Setter
-    private int id;
-    
+    private String username;
+
     @Getter
     @Setter
-    private String name;
-    
+    private String password;
+
     @Getter
     @Setter
-    private String surname;
-    
-    public void reset() {
-        this.setId(0);
-        this.setName("");
-        this.setSurname("");
+    private String firstName;
+
+    @Getter
+    @Setter
+    private String lastName;
+
+    public void register(ActionEvent actionEvent) {
+        String errorMessage = null;
+        try {
+            User user = new User(username, firstName, lastName, password);
+
+            userService.addUser(user);
+
+        } catch (NoSuchAlgorithmException ex) {
+            errorMessage = msg.getString("error.user.register.password");
+        } catch (InvalidKeySpecException ex) {
+            errorMessage = msg.getString("error.user.register.password");
+        }
+
+        boolean success = (null == errorMessage);
+        if (!success) {
+            FacesMessage facesMessages = new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR,
+                    msg.getString("error.user.register"),
+                    errorMessage
+            );
+            FacesContext.getCurrentInstance().addMessage(null, facesMessages);
+        }
+
+        RequestContext.getCurrentInstance().addCallbackParam("registered", success);
     }
 
-    public List<User> getUserList() {
-        userList = new ArrayList<User>();
-        userList.addAll(getUserService().getUsers());
-        return userList;
+    private ValidatorException createException(String title, String message) {
+        FacesMessage facesMessage = new FacesMessage(title, message);
+        facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+        return new ValidatorException(facesMessage);
+    }
+
+    public void validateUsername(FacesContext context, UIComponent component, Object value) {
+        String username = value.toString().trim();
+
+        if (username.isEmpty() || username.length() < 3) {
+            throw createException(
+                    msg.getString("error.validation.username"),
+                    msg.getString("error.validation.username.length")
+            );
+        }
+
+        if (null != userService.getUserByUsername(username)) {
+            throw createException(
+                    msg.getString("error.validation.username"),
+                    msg.getString("error.validation.username.exists")
+            );
+        }
     }
 }

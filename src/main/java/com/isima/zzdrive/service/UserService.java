@@ -1,10 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
-
-package com.isima.zzdrive.services;
+package com.isima.zzdrive.service;
 
 import com.isima.zzdrive.dao.UserDAO;
 import com.isima.zzdrive.model.User;
@@ -17,27 +17,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author Jeremy
- */
 @Service("UserService")
 @Transactional(readOnly = true)
 public class UserService {
-    
+
     @Getter
     @Setter
     @Autowired
     UserDAO userDAO;
-    
+
     public UserService() {
     }
-    
+
     @Transactional(readOnly = false)
     public void addUser(User user) {
         getUserDAO().addUser(user);
     }
-    
+
     @Transactional(readOnly = false)
     public void deleteUser(User user) {
         getUserDAO().deleteUser(user);
@@ -59,21 +55,19 @@ public class UserService {
     public List<User> getUsers() {
         return getUserDAO().getUsers();
     }
-    
+
     public User find(String username, String password) {
         User user = userDAO.getUserByUsername(username);
-        if(null != username) {
+        if (null != username) {
             try {
                 return user.checkPasswordForLogin(password) ? user : null;
-            }
-            catch(InvalidKeySpecException e) {
+            } catch (InvalidKeySpecException e) {
                 return null;
-            }
-            catch(NoSuchAlgorithmException e) {
+            } catch (NoSuchAlgorithmException e) {
                 return null;
             }
         }
         return user;
     }
-    
+
 }

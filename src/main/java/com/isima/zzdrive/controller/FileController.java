@@ -1,11 +1,13 @@
-    /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
 package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.model.File;
-import com.isima.zzdrive.services.FileService;
+import com.isima.zzdrive.service.FileService;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -40,7 +42,7 @@ public class FileController {
          </h:dataTable>       
          */
         System.out.println("------------- Files -----------");
-        
+
         List<File> files = getFileService().getFileUser(1);
 
         for (File file : files) {
@@ -51,7 +53,7 @@ public class FileController {
 
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = null;
- 
+
         byte[] content = event.getFile().getContents();
         String name = event.getFile().getFileName();
 
