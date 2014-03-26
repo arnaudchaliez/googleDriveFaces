@@ -29,14 +29,22 @@ public class FileDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public List getFilesByUserId(int id) {
+    public List getFilesByUserId(int idOwner) {
         List list = getSessionFactory().getCurrentSession()
-                                            .createQuery("from File as file where file.userid = :userid")
-                                            .setParameter("userid", id).list();
+                                            .createQuery("select name from File as file where file.idowner = :idowner")
+                                            .setParameter("idowner", idOwner).list();
+        return list;
+    }
+    
+    public List getFilesByDirectory(int idDirectory) {
+        List list = getSessionFactory().getCurrentSession()
+                                            .createQuery("from File as file where file.iddirectory = :iddirectory")
+                                            .setParameter("iddirectory", idDirectory).list();
         return list;
     }
 
     public void addFile(File file) {
+        System.out.println("persist file :" + file.getName());
         getSessionFactory().getCurrentSession().save(file);
     }
 
