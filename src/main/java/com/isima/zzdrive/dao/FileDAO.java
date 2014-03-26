@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FileDAO {
     @Autowired
-    private SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

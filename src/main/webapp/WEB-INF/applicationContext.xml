@@ -27,23 +27,12 @@
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="DataSource" />
-       <!-- <property name="packagesToScan">
-            <list>
-                <value>com.isima.zzdrive.model</value>
-            </list>
-        </property>-->
-        <property name="annotatedClasses">
-            <list>
-                <value>com.isima.zzdrive.model.Access</value>
-                <value>com.isima.zzdrive.model.Directory</value>
-                <value>com.isima.zzdrive.model.File</value>
-                <value>com.isima.zzdrive.model.Role</value>
-                <value>com.isima.zzdrive.model.User</value>
-            </list>
-        </property>
+        
+        <property name="packagesToScan" value="com.isima.zzdrive.model" />
+        
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
