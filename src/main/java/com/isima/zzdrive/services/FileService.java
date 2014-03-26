@@ -33,8 +33,8 @@ public class FileService {
         this.fileDAO = fileDAO;
     }
     
-    public List getFileUser(int inUserId) {
-        return fileDAO.getFilesByUserId(inUserId);
+    public List getFileUser(int idUser) {
+        return fileDAO.getFilesByUserId(idUser);
     }
     
     @Transactional(readOnly = false)

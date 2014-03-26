@@ -76,6 +76,7 @@ public class LoginBean {
         if(null != current) {  
             loggedIn = true;
             userBean.setUsername(username);
+            userBean.setIdUser(current.getIduser());
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);  
         } else {
             loggedIn = false;  

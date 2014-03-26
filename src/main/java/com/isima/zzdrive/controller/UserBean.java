@@ -19,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 public class UserBean implements Serializable {
 
     private String username;    
+    private int iduser;
 
     public String getUsername() {  
         return username;  
@@ -26,6 +27,14 @@ public class UserBean implements Serializable {
   
     public void setUsername(String username) {  
         this.username = username;  
+    }
+    
+     public String getIdUser() {  
+        return username;  
+    }
+  
+    public void setIdUser(int idUser) {  
+        this.iduser = idUser;  
     }
 
     public boolean isLogged() {
