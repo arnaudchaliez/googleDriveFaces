@@ -20,7 +20,7 @@ import org.primefaces.event.FileUploadEvent;
  * @author Arnaud
  */
 @ManagedBean
-@SessionScoped
+//@SessionScoped
 public class FileController {
 
     //DataModel fileModel;
@@ -32,7 +32,7 @@ public class FileController {
     public FileController() {
     }
     
-    @PostConstruct
+    //@PostConstruct
     public void initialize() {
         helper = new FileHelper();
     }

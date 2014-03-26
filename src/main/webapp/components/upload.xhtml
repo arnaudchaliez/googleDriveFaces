@@ -2,9 +2,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"> 
     <h:form enctype="multipart/form-data" id="upload-form">
-        
-        <h:outputText value="Essai:"/>
-        <h:outputText value="#{fileController.returnHello()}" title="Title"/>
                     
         <p:fileUpload fileUploadListener="#{fileController.handleFileUpload}" mode="advanced" dragDropSupport="false"  
                       update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc|docx)$/" />  

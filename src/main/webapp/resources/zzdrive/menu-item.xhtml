@@ -12,7 +12,8 @@
     </composite:interface>
 
     <composite:implementation>
-        <li class="#{view.viewId == '/'.concat(cc.attrs.outcome).concat('.xhtml') ? 'active' : ''}">
+        <c:set var="pageId" value="/${cc.attrs.outcome}.xhtml" />
+        <li class="#{view.viewId == pageId ? 'active' : ''}">
             <h:form rendered="#{not empty cc.attrs.action}">
                 <h:commandLink value="#{cc.attrs.value}" action="#{cc.attrs.action}"/>
             </h:form>

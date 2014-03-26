@@ -6,6 +6,7 @@
 
 package com.isima.zzdrive.controller;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -13,9 +14,9 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Jeremy
  */
-@ManagedBean
+@ManagedBean(name="userBean")
 @SessionScoped
-public class UserBean {
+public class UserBean implements Serializable {
 
     private String username;    
 
