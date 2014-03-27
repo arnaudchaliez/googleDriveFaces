@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
 package com.isima.zzdrive.service;
 
@@ -13,10 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author Arnaud CHALIEZ and Jérémy BOUNY
- */
 @Service("DirectoryService")
 @Transactional(readOnly = true)
 public class DirectoryService {
@@ -36,6 +34,10 @@ public class DirectoryService {
     @Transactional(readOnly = false)
     public void createDirectory(Directory directory) {
         directoryDAO.addDirectory(directory);
+    }
+    
+    public Directory getDirectoryById(int idDirectory) {
+        return directoryDAO.getDirectoryById(idDirectory);
     }
             
 }

@@ -6,6 +6,7 @@
  */
 package com.isima.zzdrive.controller;
 
+import com.isima.zzdrive.bean.DirectoryBean;
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.User;
 import com.isima.zzdrive.service.UserService;
@@ -35,6 +36,11 @@ public class LoginController {
 
     @Getter
     @Setter
+    @ManagedProperty("#{directoryBean}")
+    private DirectoryBean directoryBean;
+
+    @Getter
+    @Setter
     @ManagedProperty("#{languageController}")
     private LanguageController languageController;
 
@@ -57,6 +63,9 @@ public class LoginController {
             loggedIn = true;
             userBean.setUsername(username);
             userBean.setIdUser(current.getIduser());
+            if (null != directoryBean) {
+                //directoryBean.setCurrentIdDirectory(current.getHomeid());
+            }
             languageController.setLocaleCode(current.getLocaleCode());
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
         } else {

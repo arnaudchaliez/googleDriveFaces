@@ -21,15 +21,19 @@ public class Directory implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "iddirectory")
     private int iddirectory;
+    
     @Column(name = "name", nullable = false)
     private String name;
+    
     @Column(name = "idparent", nullable = false)
     private int idparent;
+    
     @Column(name = "size")
     private Integer size;
+    
     @Column(name = "idowner", nullable = false)
     private int idowner;
-
+        
     public Directory() {
     }
 

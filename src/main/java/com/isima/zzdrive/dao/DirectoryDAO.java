@@ -43,5 +43,15 @@ public class DirectoryDAO {
     public void updateFDirectory(Directory directory) {
         getSessionFactory().getCurrentSession().update(directory);
     }
+
+    public Directory getDirectoryById(int id) {
+        List list = getSessionFactory().getCurrentSession()
+                                            .createQuery("from Directory where id=?")
+                                            .setParameter(0, id).list();
+        if(list.size() > 0) {
+            return (Directory)list.get(0);
+        }
+        return null;
+    }
     
 }

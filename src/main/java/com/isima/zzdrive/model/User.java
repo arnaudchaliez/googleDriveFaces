@@ -25,6 +25,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import org.primefaces.util.Base64;
@@ -53,6 +54,17 @@ public class User implements java.io.Serializable {
 
     @Column(name = "localecode")
     private String localeCode;
+
+    @Column(name = "homeid", nullable = true)
+    private Integer homeid;
+
+    public Integer getHomeid() {
+        return homeid;
+    }
+
+    public void setHomeid(Integer homeid) {
+        this.homeid = homeid;
+    }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "userrole", catalog = "zzdrive", joinColumns = {
