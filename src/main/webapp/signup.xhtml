@@ -5,6 +5,8 @@
   xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="templates/home.xhtml">
         
+        <ui:define name="title">#{msg['home.signup']}</ui:define>
+        
         <ui:define name="content">
             <ui:include src="components/signupForm.xhtml" />
         </ui:define>

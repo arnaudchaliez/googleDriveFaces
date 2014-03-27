@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+    
 package com.isima.zzdrive.controller;
 
 import java.io.Serializable;
@@ -23,7 +23,13 @@ public class DirectoryBean implements Serializable {
     @Setter
     private String currentDirectory; 
 
+    
+    
     public int getCurrentIdDirectory() {
         return 1;
+    }
+    
+    public void setCurrentIdDirectory() {
+        
     }
 }

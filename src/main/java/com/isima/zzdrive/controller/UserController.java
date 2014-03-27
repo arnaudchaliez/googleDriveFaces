@@ -115,7 +115,7 @@ public class UserController implements Serializable {
         String errorMessage = null;
         try {
             User user = new User(username, firstName, lastName, password);
-
+            user.setLocaleCode("en");
             userService.addUser(user);
 
         } catch (NoSuchAlgorithmException ex) {

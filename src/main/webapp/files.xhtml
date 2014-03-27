@@ -3,19 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="templates/connected.xhtml">
 
+        <ui:define name="title">#{msg['page.files']}</ui:define>
+
         <ui:define name="content">
 
+            <h:form>
+                <p:breadCrumb styleClass="breadcrumb breadcrumb-arrow">
+                    <p:menuitem value="Categories" url="#" />
+                    <p:menuitem value="Sports" url="#" />
+                    <p:menuitem value="Football" url="#" />
+                    <p:menuitem value="Countries" url="#" />
+                    <p:menuitem value="Spain" url="#" />
+                    <p:menuitem value="F.C. Barcelona" url="#" />
+                    <p:menuitem value="Squad" url="#" />
+                    <p:menuitem value="Lionel Messi" url="#" />
+                </p:breadCrumb>
+            </h:form>
+
+
             <h:panelGroup layout="block" id="left">
-                <ui:insert name="left">
-                    <ui:include src="components/upload.xhtml" />
-                </ui:insert>
+                <ui:include src="components/upload.xhtml" />
             </h:panelGroup>
-            
+
             <ui:include src="components/createFolderModal.xhtml" />
-           
+
         </ui:define>
 
     </ui:composition>

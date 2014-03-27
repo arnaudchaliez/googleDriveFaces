@@ -16,7 +16,11 @@
             <h:outputStylesheet library="css" name="justified-nav.css" /> 
             <h:outputScript library="js" name="bootstrap.js" />
 
-            <title>Facelets Template</title>
+            <title>
+                <ui:insert name="title">
+                    #{msg['home.label']}
+                </ui:insert> - #{msg['global.title']}
+            </title>
         </h:head>
 
         <h:body>
