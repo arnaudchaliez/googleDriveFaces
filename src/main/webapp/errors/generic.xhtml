@@ -1,21 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="../templates/home.xhtml">
 
         <ui:define name="content">
-            
+
             <h:panelGroup layout="block" class="container">
                 <h:panelGroup layout="block" class="row">
                     <h:panelGroup layout="block" class="span12">
                         <h:panelGroup layout="block" class="hero-unit center">
                             <h1>
-                                #{msg['error.code.404.title']} 
+                                #{requestScope['javax.servlet.error.message']} 
                                 <small>
                                     <font face="Tahoma" color="red">
-                                        #{msg['error.code.404.code']}
+                                        <h:outputFormat value="#{msg['error.code']}">
+                                            <f:param value=" #{requestScope['javax.servlet.error.status_code']}"/>
+                                        </h:outputFormat>
                                     </font>
                                 </small>
                             </h1>

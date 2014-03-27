@@ -28,6 +28,9 @@
         <error-code>404</error-code>
         <location>/errors/404.xhtml</location>
     </error-page>
+    <error-page>
+        <location>/errors/generic.xhtml</location>
+    </error-page>
 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -54,29 +57,39 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     
-   <filter>
+    <filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-   </filter>
-   <filter-mapping>
+    </filter>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.isima.zzdrive.filter.SecurityFilter</filter-class>
+    </filter>
+   
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/secured/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>
-   </filter-mapping>
+    </filter-mapping>
    
-   <mime-mapping>
+    <mime-mapping>
         <extension>eot</extension>
         <mime-type>application/vnd.ms-fontobject</mime-type>
-   </mime-mapping>
-   <mime-mapping>
+    </mime-mapping>
+    <mime-mapping>
         <extension>ttf</extension>
         <mime-type>font/ttf</mime-type>
-   </mime-mapping>
-   <mime-mapping>
+    </mime-mapping>
+    <mime-mapping>
         <extension>otf</extension>
         <mime-type>font/otf</mime-type>
-   </mime-mapping>
-   <mime-mapping>
+    </mime-mapping>
+    <mime-mapping>
         <extension>woff</extension>
         <mime-type>font/woff</mime-type>
-   </mime-mapping>
+    </mime-mapping>
 </web-app>
