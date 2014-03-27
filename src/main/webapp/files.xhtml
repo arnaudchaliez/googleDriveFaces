@@ -4,15 +4,33 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
     <ui:composition template="templates/connected.xhtml">
+
+        <ui:define name="title">#{msg['page.files']}</ui:define>
 
         <ui:define name="content">
 
+            <ol class="breadcrumb breadcrumb-arrow">
+                <c:forEach items="${directoryBean.parents}" var="parent" varStatus="loopStatus">
+                    <ui:fragment rendered="#{!loopStatus.last}">
+                        <li>
+                            <h:link outcome="files"><i class="glyphicon glyphicon-folder-close"></i> ${parent.value}</h:link>
+                        </li>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{loopStatus.last}">
+                        <li class="active">
+                            <span><i class="glyphicon glyphicon-folder-open"></i> ${parent.value}</span>
+                        </li>
+                    </ui:fragment>
+                </c:forEach>
+            </ol>
+
             <h:panelGroup layout="block" id="left">
-                <ui:insert name="left">
                     <ui:include src="components/upload.xhtml" />
-                </ui:insert>
             </h:panelGroup>
 
             <ui:include src="components/createFolderModal.xhtml" />
@@ -54,9 +72,6 @@
 
                 </h:panelGroup>
             </h:panelGroup>
-
-
-
         </ui:define>
 
     </ui:composition>

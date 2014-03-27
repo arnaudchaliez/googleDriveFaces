@@ -18,9 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SecurityFilter implements Filter {
-    
+
     /**
      * Checks if user is logged in. If not it redirects to the login page.
+     *
      * @param request
      * @param response
      * @param chain
@@ -29,22 +30,20 @@ public class SecurityFilter implements Filter {
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        UserBean userBean = (UserBean)((HttpServletRequest)request).getSession().getAttribute("userBean");
-         
+        UserBean userBean = (UserBean) ((HttpServletRequest) request).getSession().getAttribute("userBean");
+
         if (userBean == null || !userBean.isLogged()) {
-            String contextPath = ((HttpServletRequest)request).getContextPath();
-            System.out.println(contextPath + "/login");
-            ((HttpServletResponse)response).sendRedirect(contextPath + "/login");
-        }
-        else {
-            chain.doFilter(request, response);   
+            String contextPath = ((HttpServletRequest) request).getContextPath();
+            ((HttpServletResponse) response).sendRedirect(contextPath + "/login");
+        } else {
+            chain.doFilter(request, response);
         }
     }
- 
+
     @Override
     public void init(FilterConfig config) throws ServletException {
     }
- 
+
     @Override
     public void destroy() {
     }

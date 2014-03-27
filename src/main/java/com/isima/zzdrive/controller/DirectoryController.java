@@ -35,18 +35,22 @@ public class DirectoryController {
     @Setter
     @ManagedProperty("#{DirectoryService}")
     DirectoryService directoryService;
+    
     @Getter
     @Setter
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
+    
     @Getter
     @Setter
     @ManagedProperty("#{directoryBean}")
     private DirectoryBean directoryBean;
+    
     @Getter
     @Setter
     @ManagedProperty("#{msg}")
     private ResourceBundle msg;
+    
     @Getter
     @Setter
     private String name;

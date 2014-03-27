@@ -4,6 +4,12 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     template="master.xhtml">
 
+    <ui:define name="title">
+        <ui:insert name="title">
+            #{msg['home.label']}
+        </ui:insert>
+    </ui:define>
+
     <ui:define name="body">
         <h:panelGroup layout="block" class="connectedHeader">
             <h:panelGroup layout="block" class="container">

@@ -6,11 +6,14 @@
  */
 package com.isima.zzdrive.service;
 
+import com.isima.zzdrive.dao.DirectoryDAO;
 import com.isima.zzdrive.dao.UserDAO;
+import com.isima.zzdrive.model.Directory;
 import com.isima.zzdrive.model.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
+import javax.faces.bean.ManagedProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +29,24 @@ public class UserService {
     @Autowired
     UserDAO userDAO;
 
+    @Getter
+    @Setter
+    @Autowired
+    DirectoryDAO directoryDAO;
+
     public UserService() {
     }
 
     @Transactional(readOnly = false)
     public void addUser(User user) {
         getUserDAO().addUser(user);
+        
+        Directory home = new Directory("Home", 1, user.getIduser());
+        directoryDAO.addDirectory(home);
+        
+        user.setHomeid(home.getIddirectory());
+        getUserDAO().updateUser(user);
+        
     }
 
     @Transactional(readOnly = false)

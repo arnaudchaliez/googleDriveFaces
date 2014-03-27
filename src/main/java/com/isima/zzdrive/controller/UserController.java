@@ -8,6 +8,7 @@ package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.User;
+import com.isima.zzdrive.service.DirectoryService;
 import com.isima.zzdrive.service.UserService;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
@@ -115,7 +116,7 @@ public class UserController implements Serializable {
         String errorMessage = null;
         try {
             User user = new User(username, firstName, lastName, password);
-
+            user.setLocaleCode("en");
             userService.addUser(user);
 
         } catch (NoSuchAlgorithmException ex) {

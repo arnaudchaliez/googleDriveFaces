@@ -461,7 +461,7 @@ blockquote {
 }
 .breadcrumb-arrow li + li:before {
     padding: 0;
-    content: "";
+    content: " ";
 }
 .breadcrumb-arrow li span {
     padding: 0 10px;
