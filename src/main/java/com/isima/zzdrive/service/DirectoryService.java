@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isima.zzdrive.services;
+package com.isima.zzdrive.service;
 
 import com.isima.zzdrive.dao.DirectoryDAO;
 import com.isima.zzdrive.model.Directory;

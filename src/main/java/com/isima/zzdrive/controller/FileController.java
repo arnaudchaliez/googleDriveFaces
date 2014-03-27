@@ -16,13 +16,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FileUploadEvent;  
 
 /**
  *
  * @author Arnaud
  */
-@ManagedBean
+@ManagedBean(name = "fileController")
 //@SessionScoped
 public class FileController {
 
@@ -56,7 +56,8 @@ public class FileController {
         return files;
     }
 
-    public void handleFileUpload(FileUploadEvent event) {
+    public void handleFileUpload(FileUploadEvent event) {  
+        System.out.println("called");
         FacesMessage msg = null;
 
         byte[] content = event.getFile().getContents();
@@ -69,6 +70,7 @@ public class FileController {
             msg = new FacesMessage("Succesful ", file.getName() + " is uploaded.");
         } catch (Exception e) {
             msg = new FacesMessage("Error", name + " cannot be uploaded.");
+            System.out.println(e);
         } finally {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
