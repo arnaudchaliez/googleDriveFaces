@@ -1,9 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
-
 package com.isima.zzdrive.dao;
 
 import com.isima.zzdrive.model.Directory;
@@ -14,12 +14,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Arnaud
- */
 @Repository
 public class DirectoryDAO {
+
     @Getter
     @Setter
     @Autowired
@@ -27,11 +24,11 @@ public class DirectoryDAO {
 
     public List getDirectoriesByUserId(int idOwner) {
         List list = getSessionFactory().getCurrentSession()
-                                            .createQuery("from directory as directory where directory.idowner = :idowner")
-                                            .setParameter("idowner", idOwner).list();
+                .createQuery("from directory as directory where directory.idowner = :idowner")
+                .setParameter("idowner", idOwner).list();
         return list;
     }
-    
+
     public void addDirectory(Directory directory) {
         getSessionFactory().getCurrentSession().save(directory);
     }
@@ -46,12 +43,12 @@ public class DirectoryDAO {
 
     public Directory getDirectoryById(int id) {
         List list = getSessionFactory().getCurrentSession()
-                                            .createQuery("from Directory where id=?")
-                                            .setParameter(0, id).list();
-        if(list.size() > 0) {
-            return (Directory)list.get(0);
+                .createQuery("from Directory where id=?")
+                .setParameter(0, id).list();
+        if (list.size() > 0) {
+            return (Directory) list.get(0);
         }
         return null;
     }
-    
+
 }

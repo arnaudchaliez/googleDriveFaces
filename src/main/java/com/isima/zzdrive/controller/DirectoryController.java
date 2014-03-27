@@ -1,6 +1,8 @@
-    /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
 package com.isima.zzdrive.controller;
 
@@ -20,10 +22,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.context.RequestContext;
 
-/**
- *
- * @author Arnaud
- */
 @ManagedBean(name = "directoryController")
 //@SessionScoped
 public class DirectoryController {

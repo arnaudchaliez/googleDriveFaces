@@ -40,13 +40,13 @@ public class UserService {
     @Transactional(readOnly = false)
     public void addUser(User user) {
         getUserDAO().addUser(user);
-        
+
         Directory home = new Directory("Home", 1, user.getIduser());
         directoryDAO.addDirectory(home);
-        
+
         user.setHomeid(home.getIddirectory());
         getUserDAO().updateUser(user);
-        
+
     }
 
     @Transactional(readOnly = false)

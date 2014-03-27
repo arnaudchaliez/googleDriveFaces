@@ -21,19 +21,19 @@ public class Directory implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "iddirectory")
     private int iddirectory;
-    
+
     @Column(name = "name", nullable = false)
     private String name;
-    
+
     @Column(name = "idparent", nullable = false)
     private int idparent;
-    
+
     @Column(name = "size")
     private Integer size;
-    
+
     @Column(name = "idowner", nullable = false)
     private int idowner;
-        
+
     public Directory() {
     }
 
@@ -42,8 +42,11 @@ public class Directory implements java.io.Serializable {
         this.idparent = idparent;
         this.idowner = idowner;
     }
+
     public Directory(String name, int idparent, Integer size, int idowner) {
-       this.idowner = idowner;    }
+        this.idowner = idowner;
+    }
+
     public int getIddirectory() {
         return this.iddirectory;
     }
@@ -51,6 +54,7 @@ public class Directory implements java.io.Serializable {
     public void setIddirectory(int iddirectory) {
         this.iddirectory = iddirectory;
     }
+
     public String getName() {
         return this.name;
     }
@@ -58,6 +62,7 @@ public class Directory implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public int getIdparent() {
         return this.idparent;
     }
@@ -65,6 +70,7 @@ public class Directory implements java.io.Serializable {
     public void setIdparent(int idparent) {
         this.idparent = idparent;
     }
+
     public Integer getSize() {
         return this.size;
     }
@@ -72,6 +78,7 @@ public class Directory implements java.io.Serializable {
     public void setSize(Integer size) {
         this.size = size;
     }
+
     public int getIdowner() {
         return this.idowner;
     }

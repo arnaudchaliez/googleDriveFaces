@@ -18,26 +18,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("DirectoryService")
 @Transactional(readOnly = true)
 public class DirectoryService {
-    
+
     @Getter
     @Setter
     @Autowired
     DirectoryDAO directoryDAO;
-    
+
     public DirectoryService() {
     }
-    
+
     public List getDirectoryUser(int idUser) {
         return directoryDAO.getDirectoriesByUserId(idUser);
     }
-    
+
     @Transactional(readOnly = false)
     public void createDirectory(Directory directory) {
         directoryDAO.addDirectory(directory);
     }
-    
+
     public Directory getDirectoryById(int idDirectory) {
         return directoryDAO.getDirectoryById(idDirectory);
     }
-            
+
 }

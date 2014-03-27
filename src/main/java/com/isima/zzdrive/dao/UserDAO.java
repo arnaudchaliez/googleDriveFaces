@@ -1,5 +1,6 @@
 /**
  * ZZDrive - 2014
+ *
  * @author Arnaud CHALIEZ
  * @author Jérémy BOUNY
  */
@@ -14,7 +15,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Repository
-public class UserDAO  {
+public class UserDAO {
+
     @Getter
     @Setter
     @Autowired
@@ -34,33 +36,33 @@ public class UserDAO  {
 
     public User getUserById(int id) {
         List list = getSessionFactory().getCurrentSession()
-                                            .createQuery("from User where id=?")
-                                            .setParameter(0, id).list();
-        if(list.size() > 0) {
-            return (User)list.get(0);
+                .createQuery("from User where id=?")
+                .setParameter(0, id).list();
+        if (list.size() > 0) {
+            return (User) list.get(0);
         }
         return null;
     }
-    
+
     public User getUserByUsername(String username) {
         List list = getSessionFactory().getCurrentSession()
-                                            .createQuery("from User where username=:username")
-                                            .setParameter("username", username)
-                                            .list();
-        if(list.size() > 0) {
-            return (User)list.get(0);
+                .createQuery("from User where username=:username")
+                .setParameter("username", username)
+                .list();
+        if (list.size() > 0) {
+            return (User) list.get(0);
         }
         return null;
     }
-    
+
     public User getUserByCredentials(String username, String password) {
         List list = getSessionFactory().getCurrentSession()
-                                            .createQuery("from User where username=:username and password=:password")
-                                            .setParameter("username", username)
-                                            .setParameter("password", password)
-                                            .list();
-        if(list.size() > 0) {
-            return (User)list.get(0);
+                .createQuery("from User where username=:username and password=:password")
+                .setParameter("username", username)
+                .setParameter("password", password)
+                .list();
+        if (list.size() > 0) {
+            return (User) list.get(0);
         }
         return null;
     }
