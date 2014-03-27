@@ -7,24 +7,34 @@
         <h:panelGroup class="container" layout="block">
             <h:panelGroup class="clearfix" layout="block">
                 <h:panelGroup class="footer-logo" layout="block">
-                    <h:outputText value="#{msg['global.title']}" />
+                    <h:graphicImage value="/resources/img/logo.png" width="70" height="50" />
+                    <h:link value="#{msg['global.title']}" outcome="index" />
                 </h:panelGroup>
                 <dl class="footer-nav">
-                    <dt class="nav-title">PORTFOLIO</dt>
-                    <dd class="nav-item"><a href="#">Web Design</a></dd>
+                    <dt class="nav-title">DESIGN</dt>
+                    <dd class="nav-item">
+                        <h:outputLink value="http://bootflat.github.io/" >
+                            Bootflat
+                        </h:outputLink>
+                    </dd>
                 </dl>
                 <dl class="footer-nav">
                     <dt class="nav-title">ABOUT</dt>
-                    <dd class="nav-item"><a href="#">Vision</a></dd>
+                    <dd class="nav-item">
+                        <h:link value="#{msg['global.title']}" outcome="about" class="menuitem"/>
+                    </dd>
                 </dl>
                 <dl class="footer-nav">
-                    <dt class="nav-title">GALLERY</dt>
-                    <dd class="nav-item"><a href="#">Flickr</a></dd>
-                    <dd class="nav-item"><a href="#">PhotoDune</a></dd>
+                    <dt class="nav-title">TOOLS</dt>
+                    <dd class="nav-item">
+                        <h:outputLink value="http://www.primefaces.org/" >
+                            Primefaces
+                        </h:outputLink>
+                    </dd>
                 </dl>
                 <dl class="footer-nav">
                     <dt class="nav-title">CONTACT</dt>
-                    <dd class="nav-item"><a href="#">Conctact Form</a></dd>
+                    <dd class="nav-item"><a href="#">#{msg['footer.contact']}</a></dd>
                 </dl>
             </h:panelGroup>
             <h:panelGroup class="footer-copyright text-center" layout="block">

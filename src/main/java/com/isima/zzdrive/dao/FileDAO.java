@@ -24,7 +24,7 @@ public class FileDAO {
 
     public List getFilesByUserId(int idOwner) {
         List list = getSessionFactory().getCurrentSession()
-                .createQuery("select name from File as file where file.idowner = :idowner")
+                .createQuery("from File as file where file.idowner = :idowner")
                 .setParameter("idowner", idOwner).list();
         return list;
     }

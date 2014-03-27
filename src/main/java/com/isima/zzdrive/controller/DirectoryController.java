@@ -7,7 +7,7 @@ package com.isima.zzdrive.controller;
 import com.isima.zzdrive.bean.DirectoryBean;
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.Directory;
-import com.isima.zzdrive.model.File;
+import com.isima.zzdrive.model.FileRaw;
 import com.isima.zzdrive.model.User;
 import com.isima.zzdrive.service.DirectoryService;
 import java.util.List;
@@ -58,20 +58,22 @@ public class DirectoryController {
 
         int idOwner = userBean.getIdUser();
         int idParent = directoryBean.getCurrentIdDirectory();
+        System.out.println(name);
+        if (name != null) {
+            Directory directory = new Directory(name, idParent, idOwner);
 
-        Directory directory = new Directory(name, idParent, idOwner);
+            try {
+                directoryService.createDirectory(directory);
+                created = true;
+                msg = new FacesMessage("Succesful ", directory.getName() + " is created.");
+            } catch (Exception e) {
+                msg = new FacesMessage("Error", name + " cannot be created.");
+            } finally {
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
 
-        try {
-            directoryService.createDirectory(directory);
-            created = true;
-            msg = new FacesMessage("Succesful ", directory.getName() + " is created.");
-        } catch (Exception e) {
-            msg = new FacesMessage("Error", name + " cannot be created.");
-        } finally {
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            context.addCallbackParam("created", created);
         }
-
-        context.addCallbackParam("created", created);
     }
 
     private ValidatorException createException(String title, String message) {

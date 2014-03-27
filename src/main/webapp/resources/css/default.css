@@ -34,6 +34,24 @@ h1 {
     padding-bottom: 40px !important;
 }
 
+.connectedHeader {
+    background-color: #8CC152;
+    color: #ffffff;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.connectedHeader .title {
+    font-size: 2em;
+}
+
+.connectedHeader a{
+    color: #FFFFFF;
+}
+.connectedHeader a:hover{
+    color: #F5F7FA;
+}
+
 .masthead .title {
     font-size: 120px;
     line-height: 1;
@@ -54,6 +72,13 @@ h1 {
     margin: 3px;
 }
 
+#listFiles, #about {
+    margin-top: 20px;
+}
+
+#about {
+    min-height: 400px;
+}
 
 /*
 a:link, a:visited {
