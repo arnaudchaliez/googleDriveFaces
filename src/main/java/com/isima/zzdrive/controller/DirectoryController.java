@@ -4,11 +4,12 @@
  */
 package com.isima.zzdrive.controller;
 
+import com.isima.zzdrive.bean.DirectoryBean;
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.Directory;
 import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.model.User;
-import com.isima.zzdrive.services.DirectoryService;
+import com.isima.zzdrive.service.DirectoryService;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
@@ -26,7 +27,7 @@ import org.primefaces.context.RequestContext;
  *
  * @author Arnaud
  */
-@ManagedBean
+@ManagedBean(name = "directoryController")
 //@SessionScoped
 public class DirectoryController {
 
