@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
     
-package com.isima.zzdrive.controller;
+package com.isima.zzdrive.bean;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
