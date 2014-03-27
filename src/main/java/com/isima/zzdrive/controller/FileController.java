@@ -1,11 +1,13 @@
-    /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
 package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.model.File;
-import com.isima.zzdrive.services.FileService;
+import com.isima.zzdrive.service.FileService;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

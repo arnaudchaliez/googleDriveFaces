@@ -20,15 +20,15 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="username" value="#{msg['user.username']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:inputText value="#{registerBean.username}" styleClass="form-control"  
-                                         id="username" required="true" validator="#{registerBean.validateUsername}"/> 
+                            <p:inputText value="#{userController.username}" styleClass="form-control"  
+                                         id="username" required="true" validator="#{userController.validateNewUsername}"/>
                         </h:panelGroup>
                     </h:panelGroup> 
 
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="firstname" value="#{msg['user.firstname']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:inputText value="#{registerBean.firstName}" styleClass="form-control"  
+                            <p:inputText value="#{userController.firstName}" styleClass="form-control"  
                                     id="firstname" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup> 
@@ -36,7 +36,7 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="lastname" value="#{msg['user.lastname']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:inputText value="#{registerBean.lastName}" styleClass="form-control"  
+                            <p:inputText value="#{userController.lastName}" styleClass="form-control"  
                                     id="lastname" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup> 
@@ -44,22 +44,22 @@
                     <h:panelGroup class="form-group" layout="block">
                         <p:outputLabel for="password" value="#{msg['user.password']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:password styleClass="form-control" match="passwordconf" value="#{registerBean.password}"
-                                    id="password" required="true" /> 
+                            <p:password styleClass="form-control" match="passwordconf" value="#{userController.password}"
+                                    validator="#{userController.validatePassword}" id="password" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup>
 
                     <h:panelGroup class="form-group" layout="block">
-                        <p:outputLabel for="passwordconf" value="#{msg['user.password']}" styleClass="col-md-3 control-label" />  
+                        <p:outputLabel for="passwordconf" value="#{msg['user.password.conf']}" styleClass="col-md-3 control-label" />  
                         <h:panelGroup class="col-md-9" layout="block">
-                            <p:password styleClass="form-control" value="#{registerBean.password}"
+                            <p:password styleClass="form-control" value="#{userController.password}"
                                     id="passwordconf" required="true" /> 
                         </h:panelGroup>
                     </h:panelGroup>
                     
 
                     <p:commandButton id="loginButton" value="#{msg['home.signup']}" update="growl"
-                                     actionListener="#{registerBean.register}" styleClass="btn btn-success"
+                                     actionListener="#{userController.register}" styleClass="btn btn-success"
                                      oncomplete="handleRegisterRequest(xhr, status, args)"/>
                     
                     <h:panelGroup class="form-group" layout="block">
@@ -83,7 +83,7 @@
                 $('#form').effect("shake", { times:3 }, 200);
             }
             else {
-                window.location.replace("index.xhtml");
+                window.location.replace('secured/login');
             }
         }  
     </script>  

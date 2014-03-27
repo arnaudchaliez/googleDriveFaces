@@ -1,29 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ZZDrive - 2014
+ *
+ * @author Arnaud CHALIEZ
+ * @author Jérémy BOUNY
  */
-
-package com.isima.zzdrive.controller;
+package com.isima.zzdrive.bean;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import com.isima.zzdrive.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author Jeremy
- */
-@ManagedBean(name="userBean")
+@ManagedBean(name = "userBean")
 @SessionScoped
 public class UserBean implements Serializable {
 
     @Getter
     @Setter
-    private String username;    
-    
+    private String username;
+
     @Getter
     @Setter
     private int idUser;
