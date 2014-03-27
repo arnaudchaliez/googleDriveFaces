@@ -4,6 +4,7 @@
  */
 package com.isima.zzdrive.controller;
 
+import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.Directory;
 import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.model.User;
@@ -54,11 +55,11 @@ public class DirectoryController {
         FacesMessage msg = null;
         boolean created = false;
 
-        int idOwner     = userBean.getIdUser();
-        int idParent    = directoryBean.getCurrentIdDirectory();
-        
+        int idOwner = userBean.getIdUser();
+        int idParent = directoryBean.getCurrentIdDirectory();
+
         Directory directory = new Directory(name, idParent, idOwner);
-        
+
         try {
             directoryService.createDirectory(directory);
             created = true;
@@ -68,7 +69,7 @@ public class DirectoryController {
         } finally {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        
+
         context.addCallbackParam("created", created);
     }
 

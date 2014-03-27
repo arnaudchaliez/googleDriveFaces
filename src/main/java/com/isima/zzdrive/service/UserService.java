@@ -1,4 +1,3 @@
-
 /**
  * ZZDrive - 2014
  *
@@ -17,7 +16,6 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 @Service("UserService")
 @Transactional(readOnly = true)
@@ -60,16 +58,16 @@ public class UserService {
 
     public User find(String username, String password) {
         User user = userDAO.getUserByUsername(username);
-        if(null != username) {            try {
+        if (null != username) {
+            try {
                 return user.checkPasswordForLogin(password) ? user : null;
             } catch (InvalidKeySpecException e) {
                 return null;
-            } catch(NoSuchAlgorithmException e) {
+            } catch (NoSuchAlgorithmException e) {
                 return null;
             }
-  
+
+        }
         return user;
     }
-
-
 }

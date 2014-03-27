@@ -6,6 +6,7 @@
  */
 package com.isima.zzdrive.controller;
 
+import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.service.FileService;
 import java.util.List;
@@ -29,12 +30,12 @@ public class FileController {
     @Setter
     @ManagedProperty("#{FileService}")
     FileService fileService;
-    
+
     @Getter
     @Setter
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
-    
+
     public List<File> filesUser() {
         /*
          *  <h:dataTable value="#{fileController.filesUser()}" var="file"  border="1" >
