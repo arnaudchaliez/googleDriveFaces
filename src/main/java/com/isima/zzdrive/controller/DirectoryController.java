@@ -7,10 +7,7 @@ package com.isima.zzdrive.controller;
 import com.isima.zzdrive.bean.DirectoryBean;
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.Directory;
-import com.isima.zzdrive.model.File;
-import com.isima.zzdrive.model.User;
 import com.isima.zzdrive.service.DirectoryService;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -35,22 +32,22 @@ public class DirectoryController {
     @Setter
     @ManagedProperty("#{DirectoryService}")
     DirectoryService directoryService;
-    
+
     @Getter
     @Setter
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
-    
+
     @Getter
     @Setter
     @ManagedProperty("#{directoryBean}")
     private DirectoryBean directoryBean;
-    
+
     @Getter
     @Setter
     @ManagedProperty("#{msg}")
     private ResourceBundle msg;
-    
+
     @Getter
     @Setter
     private String name;

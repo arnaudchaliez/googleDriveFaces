@@ -61,12 +61,16 @@ public class LoginController {
 
         if (null != current) {
             loggedIn = true;
+            // Set user data
             userBean.setUsername(username);
             userBean.setIdUser(current.getIduser());
-            if (null != directoryBean) {
-                //directoryBean.setCurrentIdDirectory(current.getHomeid());
-            }
+
+            // Set user home directory
+            directoryBean.setCurrentIdDirectory(current.getHomeid());
+
+            // Set user preferences (languages)
             languageController.setLocaleCode(current.getLocaleCode());
+
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
         } else {
             loggedIn = false;
@@ -78,6 +82,7 @@ public class LoginController {
     }
 
     public String logout() {
+        // Invalidate the session to logout the user
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index?faces-redirect=true";
     }

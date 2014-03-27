@@ -31,8 +31,9 @@ public class LanguageController implements Serializable {
     @Getter
     @Setter
     private static Map<String, Object> countries;
-	public Map<String, Object> getCountriesInMap() {
-            return countries;
+
+    public Map<String, Object> getCountriesInMap() {
+        return countries;
     }
 
     static {
@@ -40,7 +41,7 @@ public class LanguageController implements Serializable {
         countries.put("English", Locale.ENGLISH);
         countries.put("French", Locale.FRENCH);
     }
-    
+
     @PostConstruct
     public void init() {
         localeCode = "en";
@@ -48,7 +49,7 @@ public class LanguageController implements Serializable {
 
     public void setLocaleCode(String newLocaleValue) {
         localeCode = newLocaleValue;
-        
+
         for (Map.Entry<String, Object> entry : countries.entrySet()) {
 
             if (entry.getValue().toString().equals(newLocaleValue)) {

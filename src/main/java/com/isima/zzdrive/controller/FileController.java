@@ -16,12 +16,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.event.FileUploadEvent;  
+import org.primefaces.event.FileUploadEvent;
 
-/**
- *
- * @author Arnaud
- */
 @ManagedBean(name = "fileController")
 //@SessionScoped
 public class FileController {
@@ -56,7 +52,7 @@ public class FileController {
         return files;
     }
 
-    public void handleFileUpload(FileUploadEvent event) {  
+    public void handleFileUpload(FileUploadEvent event) {
         System.out.println("called");
         FacesMessage msg = null;
 
