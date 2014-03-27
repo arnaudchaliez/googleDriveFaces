@@ -23,12 +23,16 @@ import org.primefaces.event.FileUploadEvent;
 //@SessionScoped
 public class FileController {
 
-    //DataModel fileModel;
     @Getter
     @Setter
     @ManagedProperty("#{FileService}")
     FileService fileService;
-
+    
+    @Getter
+    @Setter
+    @ManagedProperty("#{userBean}")
+    private UserBean userBean;
+    
     public List<File> filesUser() {
         /*
          *  <h:dataTable value="#{fileController.filesUser()}" var="file"  border="1" >
@@ -40,7 +44,7 @@ public class FileController {
          </h:dataTable>       
          */
         System.out.println("------------- Files -----------");
-        
+
         List<File> files = getFileService().getFileUser(1);
 
         for (File file : files) {
@@ -51,18 +55,17 @@ public class FileController {
 
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = null;
- 
+
         byte[] content = event.getFile().getContents();
         String name = event.getFile().getFileName();
 
-        File file = new File(name, 0, "file", content, 1);
+        File file = new File(name, 0, "file", content, userBean.getIdUser());
 
         try {
             fileService.saveFile(file);
             msg = new FacesMessage("Succesful ", file.getName() + " is uploaded.");
         } catch (Exception e) {
             msg = new FacesMessage("Error", name + " cannot be uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
         } finally {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }

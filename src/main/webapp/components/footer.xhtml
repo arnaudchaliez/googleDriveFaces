@@ -2,38 +2,36 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"> 
 
-    <h:panelGroup class="row" layout="block">
-        <h:panelGroup class="col-md-12" layout="block">
-            <h:panelGroup class="footer" layout="block">
-                <h:panelGroup class="container" layout="block">
-                    <h:panelGroup class="clearfix" layout="block">
-                        <h:panelGroup class="footer-logo" layout="block">
-                            <h:outputText value="#{msg['global.title']}" />
-                        </h:panelGroup>
-                        <dl class="footer-nav">
-                            <dt class="nav-title">PORTFOLIO</dt>
-                            <dd class="nav-item"><a href="#">Web Design</a></dd>
-                        </dl>
-                        <dl class="footer-nav">
-                            <dt class="nav-title">ABOUT</dt>
-                            <dd class="nav-item"><a href="#">Vision</a></dd>
-                        </dl>
-                        <dl class="footer-nav">
-                            <dt class="nav-title">GALLERY</dt>
-                            <dd class="nav-item"><a href="#">Flickr</a></dd>
-                            <dd class="nav-item"><a href="#">PhotoDune</a></dd>
-                        </dl>
-                        <dl class="footer-nav">
-                            <dt class="nav-title">CONTACT</dt>
-                            <dd class="nav-item"><a href="#">Conctact Form</a></dd>
-                        </dl>
-                    </h:panelGroup>
-                    <h:panelGroup class="footer-copyright text-center" layout="block">
-                        <h:outputText value="#{msg['footer.copyright']}" />
-                    </h:panelGroup>
 
+    <h:panelGroup class="footer" layout="block">
+        <h:panelGroup class="container" layout="block">
+            <h:panelGroup class="clearfix" layout="block">
+                <h:panelGroup class="footer-logo" layout="block">
+                    <h:outputText value="#{msg['global.title']}" />
                 </h:panelGroup>
+                <dl class="footer-nav">
+                    <dt class="nav-title">PORTFOLIO</dt>
+                    <dd class="nav-item"><a href="#">Web Design</a></dd>
+                </dl>
+                <dl class="footer-nav">
+                    <dt class="nav-title">ABOUT</dt>
+                    <dd class="nav-item"><a href="#">Vision</a></dd>
+                </dl>
+                <dl class="footer-nav">
+                    <dt class="nav-title">GALLERY</dt>
+                    <dd class="nav-item"><a href="#">Flickr</a></dd>
+                    <dd class="nav-item"><a href="#">PhotoDune</a></dd>
+                </dl>
+                <dl class="footer-nav">
+                    <dt class="nav-title">CONTACT</dt>
+                    <dd class="nav-item"><a href="#">Conctact Form</a></dd>
+                </dl>
             </h:panelGroup>
+            <h:panelGroup class="footer-copyright text-center" layout="block">
+                <h:outputText value="#{msg['footer.copyright']}" />
+            </h:panelGroup>
+
         </h:panelGroup>
     </h:panelGroup>
+
 </ui:composition>	

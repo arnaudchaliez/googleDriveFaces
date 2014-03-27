@@ -7,6 +7,16 @@ body {
     padding-top: 0px !important;
 }
 
+.footer {
+    padding: 10px !important;
+    position: absolute;
+    width: 100%;
+    bottom:0px;
+}
+.footer .container {
+    min-height: 50px !important;
+    padding-top: 5px;
+}
 h1 {
     font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     border-bottom: 1px solid #AFAFAF; 
@@ -36,6 +46,16 @@ h1 {
     line-height: 1.25;
     display: block;
 }
+
+.modal {
+    overflow-y: auto !important;
+}
+
+#createDirectoryButton {
+    margin: 3px;
+}
+
+
 /*
 a:link, a:visited {
   color: #045491;

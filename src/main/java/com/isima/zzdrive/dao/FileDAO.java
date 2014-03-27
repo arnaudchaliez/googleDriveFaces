@@ -40,7 +40,6 @@ public class FileDAO {
     }
 
     public void addFile(File file) {
-        System.out.println("persist file :" + file.getName());
         getSessionFactory().getCurrentSession().save(file);
     }
 

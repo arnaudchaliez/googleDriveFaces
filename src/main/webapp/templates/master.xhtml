@@ -13,14 +13,17 @@
         <h:outputStylesheet library="css" name="cssLayout.css" /> 
         <h:outputStylesheet library="css" name="bootstrap.css" /> 
         <h:outputStylesheet library="css" name="justified-nav.css" /> 
-        <h:outputStylesheet library="css" name="bootflat.min.css" /> 
+        <h:outputScript library="js" name="bootstrap.js" />
         <!--<h:outputStylesheet library="css" name="metrovibes.css" />-->
        
         <title>Facelets Template</title>
     </h:head>
 
     <h:body>
-        
+        <f:facet name="last">
+             <h:outputStylesheet library="css" name="bootflat.min.css" />
+             <h:outputStylesheet library="css" name="flatfaces.css" /> 
+        </f:facet>
         
         <h:panelGroup layout="block" >
             <ui:insert name="body" >

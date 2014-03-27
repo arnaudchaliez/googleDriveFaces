@@ -4,8 +4,8 @@
  */
 package com.isima.zzdrive.services;
 
-import com.isima.zzdrive.dao.FileDAO;
-import com.isima.zzdrive.model.File;
+import com.isima.zzdrive.dao.DirectoryDAO;
+import com.isima.zzdrive.model.Directory;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,25 +17,25 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Arnaud CHALIEZ and Jérémy BOUNY
  */
-@Service("FileService")
+@Service("DirectoryService")
 @Transactional(readOnly = true)
-public class FileService {
+public class DirectoryService {
     
     @Getter
     @Setter
     @Autowired
-    FileDAO fileDAO;
+    DirectoryDAO directoryDAO;
     
-    public FileService() {
+    public DirectoryService() {
     }
     
-    public List getFileUser(int idUser) {
-        return fileDAO.getFilesByUserId(idUser);
+    public List getDirectoryUser(int idUser) {
+        return directoryDAO.getDirectoriesByUserId(idUser);
     }
     
     @Transactional(readOnly = false)
-    public void saveFile(File file) {
-        fileDAO.addFile(file);
+    public void createDirectory(Directory directory) {
+        directoryDAO.addDirectory(directory);
     }
             
 }

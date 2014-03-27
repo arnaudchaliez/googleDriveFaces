@@ -62,7 +62,7 @@ public class UserService {
     
     public User find(String username, String password) {
         User user = userDAO.getUserByUsername(username);
-        if(null != username) {
+        /*if(null != username) {
             try {
                 return user.checkPasswordForLogin(password) ? user : null;
             }
@@ -72,7 +72,7 @@ public class UserService {
             catch(NoSuchAlgorithmException e) {
                 return null;
             }
-        }
+        }*/
         return user;
     }
     
