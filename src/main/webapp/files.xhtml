@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
@@ -29,17 +30,37 @@
             </ol>
 
             <h:panelGroup layout="block" id="left">
-                <ui:include src="components/upload.xhtml" />
+                    <ui:include src="components/upload.xhtml" />
             </h:panelGroup>
 
             <ui:include src="components/createFolderModal.xhtml" />
 
-            <h:panelGroup layout="block" id="listFiles" class="panel panel-success">
+            <h:panelGroup layout="block" id="listFiles" class="panel panel-info">
                 <h:panelGroup layout="block" class="panel-heading">
                     <h:outputText styleClass="h4" value="#{msg['file.me']}" />
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="panel-body">
+                    <p:dataTable id="files" var="file" value="#{fileController.files}" 
+                                 rowKey="#{file.name}" stickyHeader="true"
+                                 selection="#{fileController.selectedFile}" selectionMode="single">
 
+                        <p:column headerText="#{msg['global.type']}">
+                            #{file.type}
+                        </p:column>
+                        
+                        <p:column headerText="#{msg['global.name']}">
+                            #{file.name}
+                        </p:column>
+
+                        <p:column headerText="#{msg['global.size']}">
+                            #{file.size}
+                        </p:column>
+                        
+                        <p:column headerText="#{msg['global.date']}">
+                            #{file.date}
+                        </p:column>
+
+                    </p:dataTable>
                 </h:panelGroup>
             </h:panelGroup>
 

@@ -3,7 +3,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     template="master.xhtml">
-        
+
     <ui:define name="title">
         <ui:insert name="title">
             #{msg['home.label']}
@@ -11,7 +11,18 @@
     </ui:define>
 
     <ui:define name="body">
-        <h:panelGroup layout="block" class="container panel">
+        <h:panelGroup layout="block" class="connectedHeader">
+            <h:panelGroup layout="block" class="container">
+                <h:panelGroup layout="block" class="pull-right">
+                    <h:graphicImage value="/resources/img/logo.png" width="60" height="40" />
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="title">
+                    <h:link value="#{msg['global.title']}" outcome="index" class="menuitem"/>
+                </h:panelGroup>
+            </h:panelGroup>
+
+        </h:panelGroup>
+        <h:panelGroup layout="block" class="container">
             <h:panelGroup layout="block" id="header" class="masthead">
                 <ui:insert name="header" >
                     <ui:include src="../components/header.xhtml" />
