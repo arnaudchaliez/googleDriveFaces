@@ -9,10 +9,10 @@
     </h3>
     
     <ul class="nav nav-justified">
-        <zzdrive:menu-item value="Files" outcome="files"/>
-        <zzdrive:menu-item value="Account" outcome="account"/>
-        <zzdrive:menu-item value="About" outcome="about"/>
-        <zzdrive:menu-item value="Logout (#{userBean.username})" action="#{loginController.logout()}" />
+        <zzdrive:menu-item value="#{msg['page.files']}" outcome="files"/>
+        <zzdrive:menu-item value="#{msg['page.account']}" outcome="account"/>
+        <zzdrive:menu-item value="#{msg['page.about']}" outcome="about"/>
+        <zzdrive:menu-item value="#{msg['page.logout']} (#{userBean.username})" action="#{loginController.logout()}" />
     </ul>
 </ui:composition>
 

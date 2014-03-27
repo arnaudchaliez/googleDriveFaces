@@ -52,7 +52,7 @@ public class UserController implements Serializable {
 
     @Getter
     @Setter
-    private String username = "test";
+    private String username;
 
     @Getter
     @Setter
