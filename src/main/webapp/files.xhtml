@@ -23,6 +23,7 @@
             </h:panelGroup>
 
             <ui:include src="components/createFolderModal.xhtml" />
+            <ui:include src="components/shareFolderModal.xhtml" />
 
             <h:panelGroup layout="block" id="listFiles" class="panel panel-info">
                 <h:panelGroup layout="block" class="panel-heading">
@@ -48,7 +49,7 @@
                 </ol>
                 <h:panelGroup layout="block" class="panel-body">
                     <p:dataTable id="files" var="file" value="#{fileController.files}" 
-                                 rowKey="#{file.name}" stickyHeader="true"
+                                 rowKey="#{file.name}"
                                  selection="#{fileController.selectedFile}" selectionMode="single">
 
                         <p:column headerText="#{msg['global.type']}">
@@ -73,6 +74,14 @@
                             #{file.date}
                         </p:column>
 
+                        <p:column>
+                            <h:panelGroup rendered="#{file.type=='Directory'}">
+                                <button directory="#{file.idfile}" class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
+                                    #{msg['directory.share']}
+                                </button>  
+                            </h:panelGroup>
+                        </p:column>
+                        
                     </p:dataTable>
                 </h:panelGroup>
             </h:panelGroup>
@@ -85,6 +94,17 @@
 
                 </h:panelGroup>
             </h:panelGroup>
+            
+            <script type="text/javascript">
+                $(function() {
+                    $('.sharefolder').click(function() {
+                        var idFolder = $(this).attr('directory');
+                        $('#shareFolderModal h1').html(idFolder);
+                        $('#shareForm\\:username').attr('class', '');
+                        $('#shareForm\\:username input').attr('class', 'form-control');
+                    });
+                });
+            </script>
         </ui:define>
 
     </ui:composition>

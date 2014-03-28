@@ -70,6 +70,10 @@ public class UserService {
         return getUserDAO().getUsers();
     }
 
+    public List<String> getUsernamesByBeginning(String username) {
+        return getUserDAO().getUsernamesByBeginning(username);
+    }
+
     public User find(String username, String password) {
         User user = userDAO.getUserByUsername(username);
         if (null != username) {

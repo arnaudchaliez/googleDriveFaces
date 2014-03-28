@@ -71,4 +71,12 @@ public class UserDAO {
         List list = getSessionFactory().getCurrentSession().createQuery("from User").list();
         return list;
     }
+    
+    public List getUsernamesByBeginning(String username) {
+        List list = getSessionFactory().getCurrentSession()
+                .createQuery("select u.username from User u WHERE u.username LIKE :username")
+                .setParameter("username", username + '%')
+                .list();
+        return list;
+    }
 }

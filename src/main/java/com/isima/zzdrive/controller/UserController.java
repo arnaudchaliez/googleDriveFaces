@@ -12,6 +12,7 @@ import com.isima.zzdrive.service.UserService;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -125,6 +126,10 @@ public class UserController implements Serializable {
             localeCode = user.getLocaleCode();
         }
     }
+    
+    public List<String> complete(String query) {
+        return userService.getUsernamesByBeginning(query);
+    }  
 
     /**
      * Register a new user

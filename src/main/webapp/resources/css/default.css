@@ -80,6 +80,10 @@ h1 {
     min-height: 400px;
 }
 
+.ui-autocomplete-panel {
+    z-index: 1100 !important;
+}
+
 /*
 a:link, a:visited {
   color: #045491;
