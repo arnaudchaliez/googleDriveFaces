@@ -27,6 +27,11 @@ public class Access implements java.io.Serializable {
     public Access() {
     }
 
+    public Access(AccessId id) {
+        this.id = id;
+        this.user = null;
+    }
+
     public Access(AccessId id, User user) {
         this.id = id;
         this.user = user;

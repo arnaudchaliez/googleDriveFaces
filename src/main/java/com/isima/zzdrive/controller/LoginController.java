@@ -61,12 +61,11 @@ public class LoginController {
 
         if (null != current) {
             loggedIn = true;
+            
             // Set user data
             userBean.setUsername(username);
             userBean.setIdUser(current.getIduser());
-
-            // Set user home directory
-            directoryBean.setCurrentIdDirectory(current.getHomeid());
+            userBean.setIdHome(current.getHomeid());
 
             // Set user preferences (languages)
             languageController.setLocaleCode(current.getLocaleCode());

@@ -18,14 +18,14 @@
                     <p:growl id="shareGrowl" showDetail="true" life="3000" />
                     
                     <h:panelGroup class="input-group" layout="block">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
-                        <p:autoComplete id="username" value="#{directoryController.username}" styleClass="form-control"  
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <p:autoComplete id="username" value="#{fileController.username}" styleClass="form-control"  
                             completeMethod="#{userController.complete}" required="true"/>
                         <p:watermark for="username" value="#{msg['user.username']}" />  
                     </h:panelGroup>
 
-                    <p:commandButton id="shareFolderButton" value="#{msg['directory.create']}" update="shareGrowl"
-                                     actionListener="#{directoryController.create}" styleClass="btn btn-success pull-right"
+                    <p:commandButton id="shareFolderButton" value="#{msg['directory.share']}" update="shareGrowl"
+                                     actionListener="#{fileController.shareFile}" styleClass="btn btn-success pull-right"
                                      oncomplete="handleShareDirectoryRequest(xhr, status, args)"/>
                     
                     <h:panelGroup class="form-group" layout="block">
@@ -43,7 +43,7 @@
 
     <script type="text/javascript">  
         function handleShareDirectoryRequest(xhr, status, args) {  
-            if (args.validationFailed || !args.created) { 
+            if (args.validationFailed || !args.shared) { 
                 $('#shareForm').effect("shake", { times:3 }, 200);
             }
             else

@@ -34,22 +34,22 @@ public class UserController implements Serializable {
     @Getter
     @Setter
     @ManagedProperty("#{UserService}")
-    private UserService userService;
+    transient private UserService userService;
 
     @Getter
     @Setter
     @ManagedProperty("#{userBean}")
-    private UserBean userBean;
+    transient private UserBean userBean;
 
     @Getter
     @Setter
     @ManagedProperty("#{msg}")
-    private ResourceBundle msg;
+    transient private ResourceBundle msg;
 
     @Getter
     @Setter
     @ManagedProperty("#{languageController}")
-    private LanguageController languageController;
+    transient private LanguageController languageController;
 
     @Getter
     @Setter

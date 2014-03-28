@@ -24,6 +24,10 @@ public class UserBean implements Serializable {
     @Setter
     private int idUser;
 
+    @Getter
+    @Setter
+    private int idHome;
+
     public boolean isLogged() {
         return getUsername() != null;
     }

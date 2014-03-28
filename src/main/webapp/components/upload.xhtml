@@ -5,9 +5,6 @@
                 > 
 
     <h:panelGroup class="top-toolbar" layout="block">
-        <button id="createDirectoryButton" class="pull-right btn btn-info" data-toggle="modal" data-target="#createFolderModal">
-            #{msg['directory.create']}
-        </button>
         <h:form enctype="multipart/form-data" id="upload-form">
 
             <p:fileUpload fileUploadListener="#{fileController.handleFileUpload}" mode="advanced" dragDropSupport="true"  

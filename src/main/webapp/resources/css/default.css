@@ -68,7 +68,7 @@ h1 {
     overflow-y: auto !important;
 }
 
-#createDirectoryButton {
+#listFiles .btn {
     margin: 3px;
 }
 
