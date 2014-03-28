@@ -18,24 +18,6 @@
                 <f:viewParam name="file" value="#{directoryBean.directory}" />
             </f:metadata>
 
-            <ol class="breadcrumb breadcrumb-arrow">
-                <c:forEach items="${directoryBean.parents}" var="parent" varStatus="loopStatus">
-                    <ui:fragment rendered="#{!loopStatus.last}">
-                        <li>
-                            <h:link outcome="files">
-                                <i class="glyphicon glyphicon-folder-close"></i> ${parent.value}
-                                <f:param name="file" value="#{parent.key}"/>
-                            </h:link>
-                        </li>
-                    </ui:fragment>
-                    <ui:fragment rendered="#{loopStatus.last}">
-                        <li class="active">
-                            <span><i class="glyphicon glyphicon-folder-open"></i> ${parent.value}</span>
-                        </li>
-                    </ui:fragment>
-                </c:forEach>
-            </ol>
-
             <h:panelGroup layout="block" id="left">
                 <ui:include src="components/upload.xhtml" />
             </h:panelGroup>
@@ -46,6 +28,24 @@
                 <h:panelGroup layout="block" class="panel-heading">
                     <h:outputText styleClass="h4" value="#{msg['file.me']}" />
                 </h:panelGroup>
+
+                <ol class="breadcrumb breadcrumb-arrow">
+                    <c:forEach items="${directoryBean.parents}" var="parent" varStatus="loopStatus">
+                        <ui:fragment rendered="#{!loopStatus.last}">
+                            <li>
+                                <h:link outcome="files">
+                                    <i class="glyphicon glyphicon-folder-close"></i> ${parent.value}
+                                    <f:param name="file" value="#{parent.key}"/>
+                                </h:link>
+                            </li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loopStatus.last}">
+                            <li class="active">
+                                <span><i class="glyphicon glyphicon-folder-open"></i> ${parent.value}</span>
+                            </li>
+                        </ui:fragment>
+                    </c:forEach>
+                </ol>
                 <h:panelGroup layout="block" class="panel-body">
                     <p:dataTable id="files" var="file" value="#{fileController.files}" 
                                  rowKey="#{file.name}" stickyHeader="true"
@@ -56,9 +56,13 @@
                         </p:column>
 
                         <p:column headerText="#{msg['global.name']}">
-                            <h:link outcome="files" value="#{file.name}">
+                            <h:link outcome="files" value="#{file.name}" rendered="${file.type=='Directory'}">
                                 <f:param name="file" value="#{file.idfile}"/>
                             </h:link>
+                            
+                            <h:panelGroup rendered="${file.type!='Directory'}">
+                                #{file.name}
+                            </h:panelGroup>
                         </p:column>
 
                         <p:column headerText="#{msg['global.size']}">

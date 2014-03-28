@@ -89,7 +89,7 @@ public class FileController implements Serializable {
         byte[] content = event.getFile().getContents();
         String name = event.getFile().getFileName();
 
-        FileRaw file = new FileRaw(name, 0, "file", content, userBean.getIdUser());
+        FileRaw file = new FileRaw(name, directoryBean.getCurrentIdDirectory(), "file", content, userBean.getIdUser());
 
         try {
             fileService.saveFile(file);
