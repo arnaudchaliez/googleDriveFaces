@@ -97,7 +97,51 @@
                     <h:outputText styleClass="h4" value="#{msg['file.sharewm']}" />
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="panel-body">
+                    <h:form id="sharedFormFiles" >
+                        <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-arrowthichk-s">
+                            <p:fileDownload value="#{fileController.downloadFile}" />
+                        </p:commandButton>
 
+                        <p:dataTable id="files" var="file" value="#{fileController.sharedFiles}" 
+                                     rowKey="#{file.name}"
+                                     selection="#{fileController.selectedFile}" selectionMode="single">
+    
+                            <p:column headerText="#{msg['global.type']}">
+                                #{file.type}
+                            </p:column>
+
+                            <p:column headerText="#{msg['global.name']}">
+                                <h:link outcome="files" value="#{file.name}" rendered="${file.type=='Directory'}">
+                                    <f:param name="file" value="#{file.idfile}"/>
+                                </h:link>
+
+                                <h:panelGroup rendered="${file.type!='Directory'}">
+                                    #{file.name}
+                                </h:panelGroup>
+                            </p:column>
+
+                            <p:column headerText="#{msg['global.size']}">
+                                #{file.size}
+                            </p:column>
+
+                            <p:column headerText="#{msg['global.date']}">
+                                #{file.date}
+                            </p:column>
+                            
+                            <p:column headerText="#{msg['global.owner']}">
+                                #{file.owner}
+                            </p:column>
+
+                            <p:column>
+                                <h:panelGroup rendered="#{file.type=='Directory'}">
+                                    <button directory="#{file.idfile}" class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
+                                        #{msg['directory.share']}
+                                    </button>  
+                                </h:panelGroup>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
                 </h:panelGroup>
             </h:panelGroup>
 
