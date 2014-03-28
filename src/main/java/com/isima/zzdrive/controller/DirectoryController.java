@@ -59,10 +59,9 @@ public class DirectoryController {
 
         int idOwner = userBean.getIdUser();
         int idParent = directoryBean.getCurrentIdDirectory();
-
+        System.out.println(name);
         if (name != null) {
             Directory directory = new Directory(name, idParent, idOwner);
-
 
 
             context.addCallbackParam("created", created);

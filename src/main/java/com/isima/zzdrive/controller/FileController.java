@@ -21,13 +21,16 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.event.FileUploadEvent;  
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 
 @ManagedBean(name = "fileController")
 //@SessionScoped
+
 public class FileController implements Serializable {
 
     @Getter
@@ -53,17 +56,19 @@ public class FileController implements Serializable {
         this.files = filesCurrentUser();
     }
 
-
+ut.println("------------- Files -----------");
     protected List<File> filesUser(int idUser) {
         List<File> files = getFileService().getFileUser(idUser);
         return files;
     }
+
 
     public List<File> filesCurrentUser() {
         List<File> files = filesUser(userBean.getIdUser());
         return files;
     }
 
+  =
     public StreamedContent downloadFile() {
         InputStream stream;
         if (selectedFile != null && selectedFile.getType().equals(FileRaw.TYPE) ) {
@@ -73,12 +78,14 @@ public class FileController implements Serializable {
         } else {
             streamedContent = null;
         }
-
         return streamedContent;
     }
 
 
-    public void handleFileUpload(FileUploadEvent event) {        FacesMessage msg = null;
+
+
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesMessage msg = null;
 
         byte[] content = event.getFile().getContents();
         String name = event.getFile().getFileName();

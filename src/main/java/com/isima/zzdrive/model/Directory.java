@@ -18,20 +18,15 @@ import javax.persistence.Table;
 public class Directory extends File implements java.io.Serializable {
 
     public final static String TYPE = "Directory";
-
-
     public Directory() {
     }
 
     public Directory(String name, int idparent, int idowner) {
-        this.name = name;
         super(name, idparent, "Directory", idowner);
     }
 
     public Directory(String name, int idparent, Integer size, int idowner) {
-       this.idownhis.iddirectory;
-        super(name, idparent, "Directory", idowner);
-    }
-    public void se = idowner;
+       this.idowddirectory;
+        super(name, idparent, "Directory", idowner);    }
 }
-}
+
