@@ -45,12 +45,12 @@ public class FileController implements Serializable {
     @Setter
     @ManagedProperty("#{FileService}")
     transient FileService fileService;
-    
+
     @Getter
     @Setter
     @ManagedProperty("#{directoryBean}")
     transient private DirectoryBean directoryBean;
-    
+
     @Getter
     @Setter
     @ManagedProperty("#{UserService}")
@@ -60,16 +60,15 @@ public class FileController implements Serializable {
     @Setter
     @ManagedProperty("#{userBean}")
     transient private UserBean userBean;
-    
+
     @Getter
     @Setter
     private List<File> files;
-    
+
     @Getter
     @Setter
     private File selectedFile;
-    
-    @Getter
+
     @Setter
     private List<File> sharedFiles;
 
@@ -80,25 +79,32 @@ public class FileController implements Serializable {
     @Setter
     private String username;
 
-    @PostConstruct
-    private void init() {
-        this.files = filesCurrentUser();
-
-        this.sharedFiles = sharedFilesCurrentUser();
-    }
-
     protected List<File> filesUser(int idUser) {
         List<File> files = getFileService().getFilesDirectoryUser(idUser, directoryBean.getCurrentIdDirectory());
         return files;
+    }
+
+    public List<File> getFiles() {
+        if (null == this.files) {
+            this.files = filesCurrentUser();
+        }
+        return this.files;
+    }
+
+    public List<File> getSharedFiles() {
+        if (null == this.sharedFiles) {
+            this.sharedFiles = sharedFilesCurrentUser();
+        }
+        return this.sharedFiles;
     }
 
     public List<File> filesCurrentUser() {
         List<File> files = filesUser(userBean.getIdUser());
         return files;
     }
-    
+
     public List<File> sharedFilesCurrentUser() {
-        List<File> files = getFileService().getSharedFileUser(userBean.getIdUser());
+        List<File> files = getFileService().getSharedFilesDirectoryUser(userBean.getIdUser(), directoryBean.getSharedDirectory());
         return files;
     }
 
@@ -110,8 +116,8 @@ public class FileController implements Serializable {
             if (type.equals(FileRaw.TYPE)) {
                 FileRaw file = (FileRaw) selectedFile;
                 stream = new ByteArrayInputStream(file.getContent());
-           		downloadFile = new DefaultStreamedContent(stream, "text/plain", file.getName());
-  
+                downloadFile = new DefaultStreamedContent(stream, "text/plain", file.getName());
+
             } else if (type.equals(Directory.TYPE)) {
                 Directory directory = (Directory) selectedFile;
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -120,8 +126,8 @@ public class FileController implements Serializable {
                     zipDirectory(zos, directory);
                     zos.close();
                 } catch (IOException e) {
-                     FacesMessage msg = new FacesMessage("Error", "this folder cannot be zipped.");
-                     FacesContext.getCurrentInstance().addMessage(null, msg);
+                    FacesMessage msg = new FacesMessage("Error", "this folder cannot be zipped.");
+                    FacesContext.getCurrentInstance().addMessage(null, msg);
                 }
                 stream = new ByteArrayInputStream(baos.toByteArray());
                 downloadFile = new DefaultStreamedContent(stream, "text/plain", directory.getName() + ".zip");
@@ -180,6 +186,6 @@ public class FileController implements Serializable {
         if (null != user) {
             fileService.shareFile(selectedFile, user);
             context.addCallbackParam("shared", true);
-}
+        }
     }
 }

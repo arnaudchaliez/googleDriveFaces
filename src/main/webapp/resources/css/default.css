@@ -68,12 +68,13 @@ h1 {
     overflow-y: auto !important;
 }
 
-#listFiles .btn {
-    margin: 3px;
+#listFiles .btn, #listSharedFiles .btn {
+    margin: 0px 3px;
+    padding: 6px 12px;
 }
 
-#listFiles, #about {
-    margin-top: 20px;
+#listFiles .btn span, #listSharedFiles .btn span {
+    padding: 0px 0px 0px 10px;
 }
 
 #about {

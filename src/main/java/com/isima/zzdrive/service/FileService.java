@@ -39,9 +39,16 @@ public class FileService {
     public List getFileUser(int idUser) {
         return fileDAO.getFilesByUserId(idUser);
     }
-    
+
     public List getSharedFileUser(int idUser) {
         return fileDAO.getSharedFilesByUserId(idUser);
+    }
+
+    public List getSharedFilesDirectoryUser(int idUser, int idDirectory) {
+        if (-1 == idDirectory) {
+            return fileDAO.getSharedFilesByUserId(idUser);
+        }
+        return fileDAO.getFilesDirectory(idDirectory);
     }
 
     public List getFilesDirectoryUser(int idUser, int idDirectory) {
@@ -52,7 +59,7 @@ public class FileService {
     public void saveFile(File file) {
         fileDAO.addFile(file);
     }
-    
+
     @Transactional(readOnly = false)
     public void shareFile(File file, User user) {
         Access access = new Access(new AccessId(file.getIdfile(), user.getIduser()));

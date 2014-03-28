@@ -51,6 +51,13 @@ public class FileDAO {
         return list;
     }
 
+    public List getFilesDirectory(int idDirectory) {
+        List list = getSessionFactory().getCurrentSession()
+                .createQuery("from File as f where f.iddirectory = :directory order by f.type, f.name")
+                .setParameter("directory", idDirectory).list();
+        return list;
+    }
+
     public List getFilesByDirectory(int idDirectory) {
         List list = getSessionFactory().getCurrentSession()
                 .createQuery("from File as file where file.iddirectory = :iddirectory")

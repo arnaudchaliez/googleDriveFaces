@@ -21,9 +21,10 @@ import lombok.Setter;
 @ManagedBean(name = "directoryBean")
 @ViewScoped
 public class DirectoryBean implements Serializable {
-    
 
     private int currentDirectory;
+
+    private int sharedDirectory;
 
     @Getter
     @Setter
@@ -34,14 +35,18 @@ public class DirectoryBean implements Serializable {
     @Setter
     @ManagedProperty("#{userBean}")
     transient private UserBean userBean;
-    
+
     @PostConstruct
     private void init() {
         setCurrentIdDirectory(userBean.getIdHome());
+        setSharedDirectory(-1);
     }
 
     @Getter
     private ArrayList<AbstractMap.SimpleEntry<Integer, String>> parents = null;
+
+    @Getter
+    private ArrayList<AbstractMap.SimpleEntry<Integer, String>> sharedParents = null;
 
     public int getCurrentIdDirectory() {
         return this.currentDirectory;
@@ -77,5 +82,27 @@ public class DirectoryBean implements Serializable {
 
     public void setDirectory(int directory) {
         setCurrentIdDirectory(directory);
+    }
+
+    public int getSharedDirectory() {
+        return sharedDirectory;
+    }
+
+    public void setSharedDirectory(int idDirectory) {
+        this.sharedDirectory = idDirectory;
+
+        Directory directory = getDirectoryService().getDirectoryById(idDirectory);
+
+        if (null == sharedParents) {
+            sharedParents = new ArrayList<>();
+        } else {
+            sharedParents.clear();
+        }
+
+        if (null != directory) {
+            sharedParents.add(0, new AbstractMap.SimpleEntry(directory.getIdfile(), directory.getName()));
+        }
+
+        sharedParents.add(0, new AbstractMap.SimpleEntry(-1, "Shared home"));
     }
 }

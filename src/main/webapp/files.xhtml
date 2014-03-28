@@ -16,145 +16,15 @@
 
             <f:metadata>
                 <f:viewParam name="file" value="#{directoryBean.directory}" />
+                <f:viewParam name="sharedFile" value="#{directoryBean.sharedDirectory}" />
             </f:metadata>
 
-            <h:panelGroup layout="block" id="left">
-                <ui:include src="components/upload.xhtml" />
+            <h:panelGroup layout="block" class="row">
+                <ui:include src="components/browseFiles.xhtml" />
+
+                <ui:include src="components/browseSharedFiles.xhtml" />
             </h:panelGroup>
 
-            <ui:include src="components/createFolderModal.xhtml" />
-            <ui:include src="components/shareFolderModal.xhtml" />
-
-            <h:panelGroup layout="block" id="listFiles" class="panel panel-info">
-                <h:panelGroup layout="block" class="panel-heading">
-                    <h:outputText styleClass="h4" value="#{msg['file.me']}" />
-                </h:panelGroup>
-
-                <ol class="breadcrumb breadcrumb-arrow">
-                    <c:forEach items="${directoryBean.parents}" var="parent" varStatus="loopStatus">
-                        <ui:fragment rendered="#{!loopStatus.last}">
-                            <li>
-                                <h:link outcome="files">
-                                    <i class="glyphicon glyphicon-folder-close"></i> ${parent.value}
-                                    <f:param name="file" value="#{parent.key}"/>
-                                </h:link>
-                            </li>
-                        </ui:fragment>
-                        <ui:fragment rendered="#{loopStatus.last}">
-                            <li class="active">
-                                <span><i class="glyphicon glyphicon-folder-open"></i> ${parent.value}</span>
-                            </li>
-                        </ui:fragment>
-                    </c:forEach>
-                </ol>
-                <h:panelGroup layout="block" class="panel-body">
-
-                    <button id="createDirectoryButton" class="pull-right btn btn-info" data-toggle="modal" data-target="#createFolderModal">
-                        #{msg['directory.create']}
-                    </button>
-                    <button class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
-                        #{msg['file.share']}
-                    </button>
-                    <h:form id="formFiles" >
-                        <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-arrowthichk-s">
-                            <p:fileDownload value="#{fileController.downloadFile}" />
-                        </p:commandButton>
-
-                        <p:dataTable id="files" var="file" value="#{fileController.files}" 
-                                     rowKey="#{file.name}"
-                                     selection="#{fileController.selectedFile}" selectionMode="single">
-                            <p:ajax event="rowSelect" listener="#{fileController.onRowSelect}" />
-
-                            <p:column headerText="#{msg['global.name']}">
-                                <h:panelGroup rendered="${file.type=='Directory'}">
-                                    <i class="glyphicon glyphicon-folder-open"></i> 
-                                    <h:link outcome="files" value=" #{file.name}">
-                                        <f:param name="file" value="#{file.idfile}"/>
-                                    </h:link>
-                                </h:panelGroup>
-
-                                <h:panelGroup rendered="${file.type!='Directory'}">
-                                    <i class="glyphicon glyphicon-file"></i> 
-                                    #{file.name}
-                                </h:panelGroup>
-                            </p:column>
-
-                            <p:column headerText="#{msg['global.size']}">
-                                #{file.size}
-                            </p:column>
-
-                            <p:column headerText="#{msg['global.date']}">
-                                #{file.date}
-                            </p:column>
-
-                        </p:dataTable>
-                    </h:form>
-                </h:panelGroup>
-            </h:panelGroup>
-
-            <h:panelGroup layout="block" id="listSharedFiles" class="panel panel-warning">
-                <h:panelGroup layout="block" class="panel-heading">
-                    <h:outputText styleClass="h4" value="#{msg['file.sharewm']}" />
-                </h:panelGroup>
-                <h:panelGroup layout="block" class="panel-body">
-                    <h:form id="sharedFormFiles" >
-                        <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-arrowthichk-s">
-                            <p:fileDownload value="#{fileController.downloadFile}" />
-                        </p:commandButton>
-
-                        <p:dataTable id="files" var="file" value="#{fileController.sharedFiles}" 
-                                     rowKey="#{file.name}"
-                                     selection="#{fileController.selectedFile}" selectionMode="single">
-    
-                            <p:column headerText="#{msg['global.type']}">
-                                #{file.type}
-                            </p:column>
-
-                            <p:column headerText="#{msg['global.name']}">
-                                <h:link outcome="files" value="#{file.name}" rendered="${file.type=='Directory'}">
-                                    <f:param name="file" value="#{file.idfile}"/>
-                                </h:link>
-
-                                <h:panelGroup rendered="${file.type!='Directory'}">
-                                    #{file.name}
-                                </h:panelGroup>
-                            </p:column>
-
-                            <p:column headerText="#{msg['global.size']}">
-                                #{file.size}
-                            </p:column>
-
-                            <p:column headerText="#{msg['global.date']}">
-                                #{file.date}
-                            </p:column>
-                            
-                            <p:column headerText="#{msg['global.owner']}">
-                                #{file.idowner}
-                            </p:column>
-
-                            <p:column>
-                                <h:panelGroup rendered="#{file.type=='Directory'}">
-                                    <button directory="#{file.idfile}" class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
-                                        #{msg['directory.share']}
-                                    </button>  
-                                </h:panelGroup>
-                            </p:column>
-
-                        </p:dataTable>
-                    </h:form>
-                </h:panelGroup>
-            </h:panelGroup>
-
-            <script type="text/javascript">
-                $(function() {
-                    $('.sharefolder').click(function() {
-                        var idFolder = $(this).attr('directory');
-                        $('#shareFolderModal h1').html(idFolder);
-                        $('#shareForm\\:username').attr('class', '');
-                        $('#shareForm\\:username input').attr('class', 'form-control');
-                    });
-                });
-            </script>
         </ui:define>
 
     </ui:composition>
