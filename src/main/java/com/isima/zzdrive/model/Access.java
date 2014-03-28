@@ -38,7 +38,6 @@ public class Access implements java.io.Serializable {
     }
 
     @EmbeddedId
-
     @AttributeOverrides({
         @AttributeOverride(name = "idfileaccess", column = @Column(name = "idfileaccess", nullable = false)),
         @AttributeOverride(name = "iduseraccess", column = @Column(name = "iduseraccess", nullable = false))})

@@ -57,15 +57,11 @@
                         </p:column>
 
                         <p:column headerText="#{msg['global.size']}">
-                            #{file.size}
-                        </p:column>
-
-                        <p:column headerText="#{msg['global.date']}">
-                            #{file.date}
+                            #{file.humanSize}
                         </p:column>
 
                         <p:column headerText="#{msg['global.owner']}">
-                            #{file.idowner}
+                            #{file.user.firstname} #{file.user.lastname}
                         </p:column>
 
                     </p:dataTable>

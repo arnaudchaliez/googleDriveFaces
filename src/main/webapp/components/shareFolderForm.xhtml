@@ -4,7 +4,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
-    
+
     <h:panelGroup class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 home-form" layout="block">
         <h:panelGroup class="panel panel-info" layout="block">
             <h:panelGroup class="panel-heading" layout="block">
@@ -12,44 +12,44 @@
                     #{msg['file.share']}
                 </h:panelGroup>
             </h:panelGroup>
-           
+
             <h:panelGroup class="panel-body" layout="block">
                 <h:form id="shareForm">
                     <p:growl id="shareGrowl" showDetail="true" life="3000" />
-                    
+
                     <h:panelGroup class="input-group" layout="block">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <p:autoComplete id="username" value="#{fileController.username}" styleClass="form-control"  
-                            completeMethod="#{userController.complete}" required="true"/>
+                                        completeMethod="#{userController.complete}" required="true"/>
                         <p:watermark for="username" value="#{msg['user.username']}" />  
                     </h:panelGroup>
 
                     <p:commandButton id="shareFolderButton" value="#{msg['file.share']}" update="shareGrowl"
                                      actionListener="#{fileController.shareFile}" styleClass="btn btn-success pull-right"
                                      oncomplete="handleShareDirectoryRequest(xhr, status, args)"/>
-                    
+
                     <h:panelGroup class="form-group" layout="block">
                         <h:panelGroup class="col-md-12 control" layout="block">
                             <h:panelGroup layout="block" styleClass="box-footer">
-                                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal">#{msg['directory.cancel']}</button>
+                                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">#{msg['directory.cancel']}</button>
                             </h:panelGroup>
                         </h:panelGroup>
                     </h:panelGroup>
-                    
+
                 </h:form>
             </h:panelGroup>
         </h:panelGroup>
     </h:panelGroup>
 
-    <script type="text/javascript">  
-        function handleShareDirectoryRequest(xhr, status, args) {  
-            if (args.validationFailed || !args.shared) { 
-                $('#shareForm').effect("shake", { times:3 }, 200);
+    <script type="text/javascript">
+        function handleShareDirectoryRequest(xhr, status, args) {
+            if (args.validationFailed || !args.shared) {
+                $('#shareForm').effect("shake", {times: 3}, 200);
             }
             else
             {
                 $('#shareFolderModal').modal('hide');
             }
-        }  
+        }
     </script>  
 </ui:composition>

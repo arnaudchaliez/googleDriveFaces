@@ -61,7 +61,7 @@ public class LoginController {
 
         if (null != current) {
             loggedIn = true;
-            
+
             // Set user data
             userBean.setUsername(username);
             userBean.setIdUser(current.getIduser());

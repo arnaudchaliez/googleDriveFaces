@@ -126,10 +126,10 @@ public class UserController implements Serializable {
             localeCode = user.getLocaleCode();
         }
     }
-    
+
     public List<String> complete(String query) {
         return userService.getUsernamesByBeginning(query);
-    }  
+    }
 
     /**
      * Register a new user

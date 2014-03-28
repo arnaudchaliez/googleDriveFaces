@@ -22,7 +22,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -164,9 +163,9 @@ public class FileController implements Serializable {
 
         byte[] content = event.getFile().getContents();
         String name = event.getFile().getFileName();
+        int size = (int) event.getFile().getSize();
 
-        FileRaw file = new FileRaw(name, directoryBean.getCurrentIdDirectory(), "file", content, userBean.getIdUser());
-
+        FileRaw file = new FileRaw(name, directoryBean.getCurrentIdDirectory(), "file", content, userBean.getIdUser(), size);
         try {
             fileService.saveFile(file);
             msg = new FacesMessage("Succesful ", file.getName() + " is uploaded.");
@@ -186,26 +185,24 @@ public class FileController implements Serializable {
         if (null != user && null != selectedFile) {
             fileService.shareFile(selectedFile, user);
             context.addCallbackParam("shared", true);
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage(
-                    null, 
+                    null,
                     new FacesMessage("You need to select a file first.")
             );
         }
     }
-    
+
     public void remove(ActionEvent actionEvent) {
-        
+
         RequestContext context = RequestContext.getCurrentInstance();
-        
+
         if (null != selectedFile) {
             fileService.deleteFile(selectedFile);
             context.addCallbackParam("removed", true);
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage(
-                    null, 
+                    null,
                     new FacesMessage("You need to select a file first.")
             );
         }

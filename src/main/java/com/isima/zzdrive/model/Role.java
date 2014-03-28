@@ -39,7 +39,6 @@ public class Role implements java.io.Serializable {
     }
 
     @Id
-
     @Column(name = "idrole", unique = true, nullable = false)
     public int getIdrole() {
         return this.idrole;

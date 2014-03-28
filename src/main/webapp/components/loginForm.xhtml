@@ -4,7 +4,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
-    
+
     <h:panelGroup class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 home-form" layout="block">
         <h:panelGroup class="panel panel-info" layout="block">
             <h:panelGroup class="panel-heading" layout="block">
@@ -12,7 +12,7 @@
                     #{msg['home.signin']}
                 </h:panelGroup>
             </h:panelGroup>
-            
+
             <h:panelGroup class="panel-body" layout="block">
                 <h:form id="form">
                     <p:growl id="growl" showDetail="true" life="3000" />  
@@ -20,21 +20,21 @@
                     <h:panelGroup class="input-group" layout="block">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <p:inputText value="#{loginController.username}" styleClass="form-control"  
-                                id="username" required="true" />  
+                                     id="username" required="true" />  
                         <p:watermark for="username" value="#{msg['user.username']}" />  
                     </h:panelGroup>
 
                     <h:panelGroup class="input-group" layout="block">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <p:password value="#{loginController.password}" styleClass="form-control"   
-                                id="password" required="true" />  
+                                    id="password" required="true" />  
                         <p:watermark for="password" value="#{msg['user.password']}" />  
                     </h:panelGroup> 
 
                     <p:commandButton id="loginButton" value="#{msg['home.login']}" update="growl"
                                      actionListener="#{loginController.login}" styleClass="btn btn-success"
                                      oncomplete="handleLoginRequest(xhr, status, args)"/>
-                    
+
                     <h:panelGroup class="form-group" layout="block">
                         <h:panelGroup class="col-md-12 control" layout="block">
                             <h:panelGroup layout="block" styleClass="box-footer">
@@ -43,20 +43,20 @@
                             </h:panelGroup>
                         </h:panelGroup>
                     </h:panelGroup>
-                    
+
                 </h:form>
             </h:panelGroup>
         </h:panelGroup>
     </h:panelGroup>
 
-    <script type="text/javascript">  
-        function handleLoginRequest(xhr, status, args) {  
-            if (args.validationFailed || !args.loggedIn) { 
-                $('#form').effect("shake", { times:3 }, 200);
+    <script type="text/javascript">
+        function handleLoginRequest(xhr, status, args) {
+            if (args.validationFailed || !args.loggedIn) {
+                $('#form').effect("shake", {times: 3}, 200);
             }
             else {
                 window.location.replace('secured/files');
             }
-        }  
+        }
     </script>  
 </ui:composition>

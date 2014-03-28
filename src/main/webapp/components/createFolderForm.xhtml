@@ -4,7 +4,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
-    
+
     <h:panelGroup class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 home-form" layout="block">
         <h:panelGroup class="panel panel-info" layout="block">
             <h:panelGroup class="panel-heading" layout="block">
@@ -12,7 +12,7 @@
                     #{msg['directory.create']}
                 </h:panelGroup>
             </h:panelGroup>
-           
+
             <h:panelGroup class="panel-body" layout="block">
                 <h:form id="form">
                     <p:growl id="growl" showDetail="true" life="3000" />  
@@ -20,37 +20,37 @@
                     <h:panelGroup class="input-group" layout="block">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
                         <p:inputText value="#{directoryController.name}" styleClass="form-control"  
-                                         id="name" required="true" validator="#{directoryController.validateName}"/> 
+                                     id="name" required="true" validator="#{directoryController.validateName}"/> 
                         <p:watermark for="name" value="#{msg['directory.name']}" />  
                     </h:panelGroup>
 
                     <p:commandButton id="createFolderButton" value="#{msg['directory.create']}" update="growl"
                                      actionListener="#{directoryController.create}" styleClass="btn btn-success pull-right"
                                      oncomplete="handleCreateDirectoryRequest(xhr, status, args)"/>
-                    
+
                     <h:panelGroup class="form-group" layout="block">
                         <h:panelGroup class="col-md-12 control" layout="block">
                             <h:panelGroup layout="block" styleClass="box-footer">
-                                 <button type="button" class="btn btn-default pull-right" data-dismiss="modal">#{msg['directory.cancel']}</button>
+                                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">#{msg['directory.cancel']}</button>
                             </h:panelGroup>
                         </h:panelGroup>
                     </h:panelGroup>
-                    
+
                 </h:form>
             </h:panelGroup>
         </h:panelGroup>
     </h:panelGroup>
 
-    <script type="text/javascript">  
-        function handleCreateDirectoryRequest(xhr, status, args) {  
-            if (args.validationFailed || !args.created) { 
-                $('#form').effect("shake", { times:3 }, 200);
+    <script type="text/javascript">
+        function handleCreateDirectoryRequest(xhr, status, args) {
+            if (args.validationFailed || !args.created) {
+                $('#form').effect("shake", {times: 3}, 200);
             }
             else
             {
                 $('#createFolderModal').modal('hide');
                 window.location.href = window.location.href;
             }
-        }  
+        }
     </script>  
 </ui:composition>

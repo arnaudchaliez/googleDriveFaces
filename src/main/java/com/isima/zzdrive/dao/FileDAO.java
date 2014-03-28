@@ -29,16 +29,9 @@ public class FileDAO {
         return list;
     }
 
-    /* public List getSharedFilesByUserId(int idUser) {
+    public List getSharedFilesByUserId(int idUser) {
         List list = getSessionFactory().getCurrentSession()
-                .createQuery("select user from User user, AccessId access where access.idfileaccess = file.idfile AND access.iduseraccess = :iduser")
-                .setParameter("iduser", idUser).list();
-        return list;
-    } */
-    
-     public List getSharedFilesByUserId(int idUser) {
-        List list = getSessionFactory().getCurrentSession()
-                .createQuery("select file from File file, Access access where access.id.idfileaccess = file.idfile AND access.id.iduseraccess = :iduser")
+                .createQuery("select f from File as f, Access a where a.id.idfileaccess = f.idfile AND a.id.iduseraccess = :iduser order by f.type, f.name")
                 .setParameter("iduser", idUser).list();
         return list;
     }
@@ -60,7 +53,7 @@ public class FileDAO {
 
     public List getFilesByDirectory(int idDirectory) {
         List list = getSessionFactory().getCurrentSession()
-                .createQuery("from File as file where file.iddirectory = :iddirectory")
+                .createQuery("from File as f where f.iddirectory = :iddirectory order by f.type, f.name")
                 .setParameter("iddirectory", idDirectory).list();
         return list;
     }

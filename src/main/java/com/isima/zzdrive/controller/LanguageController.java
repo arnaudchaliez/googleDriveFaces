@@ -37,7 +37,7 @@ public class LanguageController implements Serializable {
     }
 
     static {
-        countries = new LinkedHashMap<String, Object>();
+        countries = new LinkedHashMap<>();
         countries.put("English", Locale.ENGLISH);
         countries.put("French", Locale.FRENCH);
     }

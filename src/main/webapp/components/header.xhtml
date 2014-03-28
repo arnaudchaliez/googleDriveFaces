@@ -1,15 +1,15 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" class="navbar-header"
-                    xmlns="http://www.w3.org/1999/xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:zzdrive="http://java.sun.com/jsf/composite/zzdrive"
                 xmlns:h="http://java.sun.com/jsf/html"> 
-    
-    
+
     <ul class="nav nav-justified">
         <zzdrive:menu-item value="#{msg['page.files']}" outcome="files"/>
         <zzdrive:menu-item value="#{msg['page.account']}" outcome="account"/>
         <zzdrive:menu-item value="#{msg['page.about']}" outcome="about"/>
         <zzdrive:menu-item value="#{msg['page.logout']} (#{userBean.username})" action="#{loginController.logout()}" />
     </ul>
+    
 </ui:composition>
 

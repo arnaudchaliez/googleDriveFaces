@@ -76,7 +76,7 @@ public class UserService {
 
     public User find(String username, String password) {
         User user = userDAO.getUserByUsername(username);
-        if (null != username) {
+        if (null != user) {
             try {
                 return user.checkPasswordForLogin(password) ? user : null;
             } catch (InvalidKeySpecException e) {

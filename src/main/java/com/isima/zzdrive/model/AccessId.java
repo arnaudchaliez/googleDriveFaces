@@ -57,6 +57,7 @@ public class AccessId implements java.io.Serializable {
                 && (this.getIduseraccess() == castOther.getIduseraccess());
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
 

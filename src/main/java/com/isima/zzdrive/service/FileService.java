@@ -65,7 +65,7 @@ public class FileService {
         Access access = new Access(new AccessId(file.getIdfile(), user.getIduser()));
         accessDAO.addAccess(access);
     }
-    
+
     @Transactional(readOnly = false)
     public void deleteFile(File file) {
         fileDAO.deleteFile(file);
