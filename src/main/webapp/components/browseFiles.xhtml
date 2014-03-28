@@ -7,6 +7,7 @@
 
     <ui:include src="createFolderModal.xhtml" />
     <ui:include src="shareFolderModal.xhtml" />
+    <ui:include src="removeModal.xhtml" />
 
     <h:panelGroup layout="block" id="listFiles" class="col-md-6 home-form">
         <h:panelGroup layout="block" class="panel panel-info">
@@ -46,8 +47,11 @@
                 <button class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
                     #{msg['file.share']}
                 </button>
+                <button class="pull-right btn btn-info removefile" data-toggle="modal" data-target="#removeModal">
+                    #{msg['file.remove']}
+                </button>
                 <h:form id="formFiles" >
-                    <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-arrowthichk-s" styleClass="pull-right btn btn-info">
+                    <p:commandButton id="downloadLink" value="#{msg['file.download']}" ajax="false" icon="ui-icon-arrowthichk-s" styleClass="pull-right btn btn-info">
                         <p:fileDownload value="#{fileController.downloadFile}" />
                     </p:commandButton>
 

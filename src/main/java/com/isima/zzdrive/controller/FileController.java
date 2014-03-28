@@ -183,9 +183,31 @@ public class FileController implements Serializable {
 
         User user = userService.getUserByUsername(username);
 
-        if (null != user) {
+        if (null != user && null != selectedFile) {
             fileService.shareFile(selectedFile, user);
             context.addCallbackParam("shared", true);
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null, 
+                    new FacesMessage("You need to select a file first.")
+            );
+        }
+    }
+    
+    public void remove(ActionEvent actionEvent) {
+        
+        RequestContext context = RequestContext.getCurrentInstance();
+        
+        if (null != selectedFile) {
+            fileService.deleteFile(selectedFile);
+            context.addCallbackParam("removed", true);
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null, 
+                    new FacesMessage("You need to select a file first.")
+            );
         }
     }
 }

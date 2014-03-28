@@ -1,0 +1,55 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                >
+
+    <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <h:panelGroup class="model-dialog" layout="block">
+            <h:panelGroup class="model-content" layout="block">
+                <h:panelGroup class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 home-form" layout="block">
+                    <h:panelGroup class="panel panel-info" layout="block">
+                        <h:panelGroup class="panel-heading" layout="block">
+                            <h:panelGroup class="panel-title" layout="block">
+                                #{msg['file.remove']}
+                            </h:panelGroup>
+                        </h:panelGroup>
+
+                        <h:panelGroup class="panel-body" layout="block">
+                            <h:form id="removeForm">
+                                <p:growl id="removeGrowl" showDetail="true" life="3000" />
+                                #{msg['file.remove.conf']}
+                                <p:commandButton id="removeButton" value="#{msg['file.remove']}" update="removeGrowl"
+                                                 actionListener="#{fileController.remove}" styleClass="btn btn-success pull-right"
+                                                 oncomplete="handleRemoveRequest(xhr, status, args)"/>
+
+                                <h:panelGroup class="form-group" layout="block">
+                                    <h:panelGroup class="col-md-12 control" layout="block">
+                                        <h:panelGroup layout="block" styleClass="box-footer">
+                                            <button type="button" class="btn btn-default pull-right" data-dismiss="modal">#{msg['directory.cancel']}</button>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+
+                            </h:form>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+                <script type="text/javascript">
+                    function handleRemoveRequest(xhr, status, args) {
+                        if (args.validationFailed || !args.removed) {
+                            $('#removeForm').effect("shake", {times: 3}, 200);
+                        }
+                        else
+                        {
+                            $('#removeModal').modal('hide');
+                            window.location.href = window.location.href;
+                        }
+                    }
+                </script>  
+            </h:panelGroup>
+        </h:panelGroup>
+    </div>
+
+</ui:composition>

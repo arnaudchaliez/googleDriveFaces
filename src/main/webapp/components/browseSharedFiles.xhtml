@@ -33,7 +33,7 @@
 
             <h:panelGroup layout="block" class="panel-body">
                 <h:form id="sharedFormFiles" >
-                    <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-arrowthichk-s" styleClass="pull-right btn btn-warning">
+                    <p:commandButton id="downloadLink" value="#{msg['file.download']}" ajax="false" icon="ui-icon-arrowthichk-s" styleClass="pull-right btn btn-warning">
                         <p:fileDownload value="#{fileController.downloadFile}" />
                     </p:commandButton>
 

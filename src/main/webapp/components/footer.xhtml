@@ -27,14 +27,33 @@
                 <dl class="footer-nav">
                     <dt class="nav-title">TOOLS</dt>
                     <dd class="nav-item">
+                        <h:outputLink value="http://hibernate.org/" >
+                            Hibernate
+                        </h:outputLink>
+                    </dd>
+                    <dd class="nav-item">
+                        <h:outputLink value="http://maven.apache.org/" >
+                            Maven
+                        </h:outputLink>
+                    </dd>
+                    <dd class="nav-item">
                         <h:outputLink value="http://www.primefaces.org/" >
                             Primefaces
+                        </h:outputLink>
+                    </dd>
+                    <dd class="nav-item">
+                        <h:outputLink value="http://spring.io//" >
+                            Spring
                         </h:outputLink>
                     </dd>
                 </dl>
                 <dl class="footer-nav">
                     <dt class="nav-title">CONTACT</dt>
-                    <dd class="nav-item"><a href="#">#{msg['footer.contact']}</a></dd>
+                    <dd class="nav-item">
+                        <h:outputLink value="http://github.com/Kinokoh/googleDriveFaces" >
+                            #{msg['footer.contact']}
+                        </h:outputLink>
+                    </dd>
                 </dl>
             </h:panelGroup>
             <h:panelGroup class="footer-copyright text-center" layout="block">
