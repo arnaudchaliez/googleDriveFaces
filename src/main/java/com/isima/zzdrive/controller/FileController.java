@@ -45,10 +45,12 @@ public class FileController implements Serializable {
     @Setter
     @ManagedProperty("#{FileService}")
     transient FileService fileService;
+    
     @Getter
     @Setter
     @ManagedProperty("#{directoryBean}")
     transient private DirectoryBean directoryBean;
+    
     @Getter
     @Setter
     @ManagedProperty("#{UserService}")
@@ -58,11 +60,14 @@ public class FileController implements Serializable {
     @Setter
     @ManagedProperty("#{userBean}")
     transient private UserBean userBean;
+    
     @Getter
     @Setter
     private List<File> files;
+    
     @Getter
     @Setter
+    private File selectedFile;
     
     @Getter
     @Setter

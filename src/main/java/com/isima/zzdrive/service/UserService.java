@@ -43,7 +43,7 @@ public class UserService {
         Directory home = new Directory("Home", 1, user.getIduser());
         directoryDAO.addDirectory(home);
 
-        user.setHomeid(home.getIddirectory());
+        user.setHomeid(home.getIdfile());
         getUserDAO().updateUser(user);
 
     }
