@@ -19,13 +19,17 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+@ViewScoped
 @ManagedBean(name = "fileController")
 public class FileController implements Serializable {
 
@@ -54,11 +58,13 @@ public class FileController implements Serializable {
 
     @Getter
     @Setter
-    private StreamedContent streamedContent = null;
+    private StreamedContent downloadFile;
 
     @PostConstruct
     private void init() {
         this.files = filesCurrentUser();
+        /*InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/resources/img/logo.png");
+		downloadFile = new DefaultStreamedContent(stream, "image/png", "logo.png");*/   
     }
 
     protected List<File> filesUser(int idUser) {
@@ -71,17 +77,24 @@ public class FileController implements Serializable {
         return files;
     }
 
-    public StreamedContent downloadFile() {
+    protected void updateDownloadFile() {
         InputStream stream;
+        System.out.println("selectedFile" + selectedFile);
         if (selectedFile != null && selectedFile.getType().equals(FileRaw.TYPE)) {
             FileRaw file = (FileRaw) selectedFile;
             stream = new ByteArrayInputStream(file.getContent());
-            streamedContent = new DefaultStreamedContent(stream, "text/plain", file.getName());
+            downloadFile = new DefaultStreamedContent(stream, "text/plain", file.getName());
+            System.out.println("selectedFile" + downloadFile);
         } else {
-            streamedContent = null;
+            downloadFile = null;
         }
-        return streamedContent;
+        //return downloadFile;
     }
+    
+    public void onRowSelect(SelectEvent event) {  
+        //selectedFile = ((File) event.getObject());
+        updateDownloadFile();   
+    }  
 
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = null;
