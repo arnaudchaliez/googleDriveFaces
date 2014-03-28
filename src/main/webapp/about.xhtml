@@ -7,27 +7,22 @@
 
         <ui:define name="content">
 
-            <h:panelGroup layout="block" id="about" class="panel panel-info">
-                <h:panelGroup layout="block" class="panel-heading">
-                    <h:outputText styleClass="h4" value="#{msg['page.about']}" />
-                </h:panelGroup>
-                <h:panelGroup layout="block" class="panel-body">
-                    <h:panelGroup class="authors" layout="block">
+            <h:panelGroup class="home-form col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-success" layout="block">
+
+                <h4>#{msg['page.about']}</h4>
+
+                <h:panelGroup layout="block" styleClass="popover-content">
+                    <p>
                         #{msg['about.authors.label']} :
                         #{msg['about.authors.content']} 
-                    </h:panelGroup>
-                    <h:panelGroup class="p" layout="block">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur iaculis consectetur hendrerit. Nullam tincidunt vestibulum pellentesque. Morbi tincidunt rhoncus eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut eu dui malesuada, aliquet libero at, condimentum tortor. Suspendisse dui ante, dignissim at tempor vitae, sagittis at est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed ut magna lorem. Vestibulum hendrerit eleifend velit quis lacinia. Aliquam condimentum nisl a purus ullamcorper, a malesuada eros pulvinar. Aliquam ut tempor lacus.
-
-                        Mauris et odio diam. Cras ac metus in ante rhoncus porta. Cras in augue vel quam molestie tristique. Aenean in ipsum ut ligula tincidunt viverra in id mi. Nulla id mauris venenatis tortor posuere auctor quis vel massa. Phasellus at enim porta, fringilla sem sit amet, vestibulum velit. Quisque eu enim posuere, interdum orci vel, ullamcorper enim. Aliquam non lacinia neque. Quisque ac diam posuere, placerat leo interdum, laoreet urna. Donec vitae lobortis sapien, quis suscipit leo. Nunc vulputate sodales tellus, ac imperdiet elit varius non. Nulla aliquet sapien quam, id faucibus lectus posuere eget. Mauris et cursus dui. Donec tristique nisi purus, imperdiet sollicitudin erat gravida eget. Morbi in convallis lacus.
-
-                        Suspendisse vestibulum volutpat mi, non laoreet sem vestibulum quis. Praesent convallis felis ac velit aliquet, quis fringilla magna ultricies. Maecenas aliquet, odio non ultrices pharetra, sem velit pellentesque turpis, sed dignissim justo urna sit amet libero. Etiam dignissim massa quis iaculis ultricies. Phasellus convallis, massa molestie sodales sagittis, erat velit posuere nisl, non tempus augue urna eu turpis. Maecenas eu enim vitae odio posuere varius. In convallis vestibulum dignissim. Vivamus ullamcorper euismod molestie. Cras quis dolor quis nulla consequat convallis. Donec facilisis bibendum euismod. Phasellus sit amet tellus fringilla, lacinia felis quis, tristique nulla. Fusce enim nibh, luctus vehicula arcu sit amet, feugiat sollicitudin tortor.
-
-                        Maecenas malesuada nisl lectus, vitae condimentum arcu pulvinar tempor. Phasellus laoreet tincidunt enim, sit amet facilisis quam lacinia nec. Phasellus sed lorem ut diam placerat elementum vitae sit amet turpis. Aliquam aliquet lectus eu rhoncus porttitor. Sed quis turpis in tortor aliquam gravida. Praesent non mi nisi. Nullam placerat nisi et condimentum dapibus. In dictum augue vel augue suscipit aliquam. Proin in luctus neque. Integer sagittis non nulla ut lacinia. Nulla laoreet egestas elit et sagittis.
-
-                        Sed nisl dolor, aliquam tincidunt ligula eu, commodo accumsan odio. Sed bibendum eu eros vestibulum ullamcorper. In facilisis cursus nunc ac mollis. Suspendisse egestas vel tortor eget eleifend. Vivamus quis diam pretium, malesuada justo nec, tincidunt dui. Curabitur nec neque nibh. Maecenas in felis sapien. Aenean aliquet, neque sed congue pretium, ligula erat accumsan diam, nec interdum massa purus vel nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam iaculis, justo quis tempor ultrices, lectus sapien porttitor metus, quis semper urna odio sit amet turpis. Aenean in risus lobortis, aliquam turpis id, lobortis nunc.
-                    </h:panelGroup>
+                    </p>
+                    <p>
+                        <h:outputLink value="https://github.com/Kinokoh/googleDriveFaces" class="btn btn-success">
+                            Fork me
+                        </h:outputLink>
+                    </p>
                 </h:panelGroup>
+                
             </h:panelGroup>
 
         </ui:define>

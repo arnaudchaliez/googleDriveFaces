@@ -9,7 +9,7 @@
         <h:panelGroup class="panel panel-info" layout="block">
             <h:panelGroup class="panel-heading" layout="block">
                 <h:panelGroup class="panel-title" layout="block">
-                    #{msg['directory.share']}
+                    #{msg['file.share']}
                 </h:panelGroup>
             </h:panelGroup>
            
@@ -24,7 +24,7 @@
                         <p:watermark for="username" value="#{msg['user.username']}" />  
                     </h:panelGroup>
 
-                    <p:commandButton id="shareFolderButton" value="#{msg['directory.share']}" update="shareGrowl"
+                    <p:commandButton id="shareFolderButton" value="#{msg['file.share']}" update="shareGrowl"
                                      actionListener="#{fileController.shareFile}" styleClass="btn btn-success pull-right"
                                      oncomplete="handleShareDirectoryRequest(xhr, status, args)"/>
                     
