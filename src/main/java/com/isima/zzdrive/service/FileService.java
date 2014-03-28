@@ -6,8 +6,12 @@
  */
 package com.isima.zzdrive.service;
 
+import com.isima.zzdrive.dao.AccessDAO;
 import com.isima.zzdrive.dao.FileDAO;
 import com.isima.zzdrive.model.File;
+import com.isima.zzdrive.model.User;
+import com.isima.zzdrive.model.Access;
+import com.isima.zzdrive.model.AccessId;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +27,11 @@ public class FileService {
     @Setter
     @Autowired
     FileDAO fileDAO;
+
+    @Getter
+    @Setter
+    @Autowired
+    AccessDAO accessDAO;
 
     public FileService() {
     }
@@ -42,5 +51,11 @@ public class FileService {
     @Transactional(readOnly = false)
     public void saveFile(File file) {
         fileDAO.addFile(file);
+    }
+    
+    @Transactional(readOnly = false)
+    public void shareFile(File file, User user) {
+        Access access = new Access(new AccessId(file.getIdfile(), user.getIduser()));
+        accessDAO.addAccess(access);
     }
 }

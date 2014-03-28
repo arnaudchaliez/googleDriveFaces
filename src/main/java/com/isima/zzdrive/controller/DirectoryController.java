@@ -49,10 +49,6 @@ public class DirectoryController {
     @Setter
     private String name;
 
-    @Getter
-    @Setter
-    private String username;
-
     public void create(ActionEvent actionEvent) {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;

@@ -11,25 +11,33 @@ import java.io.Serializable;
 import java.util.AbstractMap;
 import com.isima.zzdrive.model.Directory;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import lombok.Getter;
+import lombok.Setter;
 
 @ManagedBean(name = "directoryBean")
-@SessionScoped
+@ViewScoped
 public class DirectoryBean implements Serializable {
+    
 
     private int currentDirectory;
 
-    private transient DirectoryService directoryService;
+    @Getter
+    @Setter
+    @ManagedProperty("#{DirectoryService}")
+    transient DirectoryService directoryService;
 
-    public DirectoryService getDirectoryService() {
-        if (directoryService == null) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            directoryService = context.getApplication().evaluateExpressionGet(context, "#{DirectoryService}", DirectoryService.class);
-        }
-        return directoryService;
+    @Getter
+    @Setter
+    @ManagedProperty("#{userBean}")
+    transient private UserBean userBean;
+    
+    @PostConstruct
+    private void init() {
+        setCurrentIdDirectory(userBean.getIdHome());
     }
 
     @Getter

@@ -11,7 +11,9 @@ import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.Directory;
 import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.model.FileRaw;
+import com.isima.zzdrive.model.User;
 import com.isima.zzdrive.service.FileService;
+import com.isima.zzdrive.service.UserService;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,9 +28,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
+import javax.faces.event.ActionEvent;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -41,30 +44,41 @@ public class FileController implements Serializable {
     @Getter
     @Setter
     @ManagedProperty("#{FileService}")
-    FileService fileService;
+    transient FileService fileService;
     @Getter
     @Setter
     @ManagedProperty("#{directoryBean}")
-    private DirectoryBean directoryBean;
+    transient private DirectoryBean directoryBean;
+    @Getter
+    @Setter
+    @ManagedProperty("#{UserService}")
+    transient private UserService userService;
+
     @Getter
     @Setter
     @ManagedProperty("#{userBean}")
-    private UserBean userBean;
+    transient private UserBean userBean;
     @Getter
     @Setter
     private List<File> files;
     @Getter
     @Setter
-    private List<File> sharedFiles;
+    
     @Getter
     @Setter
-    private File selectedFile;
+    private List<File> sharedFiles;
+
     @Setter
     private StreamedContent downloadFile;
+
+    @Getter
+    @Setter
+    private String username;
 
     @PostConstruct
     private void init() {
         this.files = filesCurrentUser();
+
         this.sharedFiles = sharedFilesCurrentUser();
     }
 
@@ -85,11 +99,14 @@ public class FileController implements Serializable {
 
     protected void updateDownloadFile() {
         InputStream stream;
+
         if (selectedFile != null) {
             String type = selectedFile.getType();
             if (type.equals(FileRaw.TYPE)) {
                 FileRaw file = (FileRaw) selectedFile;
                 stream = new ByteArrayInputStream(file.getContent());
+           		downloadFile = new DefaultStreamedContent(stream, "text/plain", file.getName());
+  
             } else if (type.equals(Directory.TYPE)) {
                 Directory directory = (Directory) selectedFile;
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -107,7 +124,6 @@ public class FileController implements Serializable {
         } else {
             downloadFile = null;
         }
-
     }
 
     protected void zipDirectory(ZipOutputStream zos, File file) throws IOException {
@@ -148,5 +164,17 @@ public class FileController implements Serializable {
         } finally {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+    }
+
+    public void shareFile(ActionEvent actionEvent) {
+
+        RequestContext context = RequestContext.getCurrentInstance();
+
+        User user = userService.getUserByUsername(username);
+
+        if (null != user) {
+            fileService.shareFile(selectedFile, user);
+            context.addCallbackParam("shared", true);
+}
     }
 }

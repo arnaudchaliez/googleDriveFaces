@@ -23,6 +23,7 @@
             </h:panelGroup>
 
             <ui:include src="components/createFolderModal.xhtml" />
+            <ui:include src="components/shareFolderModal.xhtml" />
 
             <h:panelGroup layout="block" id="listFiles" class="panel panel-info">
                 <h:panelGroup layout="block" class="panel-heading">
@@ -48,6 +49,12 @@
                 </ol>
                 <h:panelGroup layout="block" class="panel-body">
 
+                    <button id="createDirectoryButton" class="pull-right btn btn-info" data-toggle="modal" data-target="#createFolderModal">
+                        #{msg['directory.create']}
+                    </button>
+                    <button class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
+                        #{msg['directory.share']}
+                    </button>
                     <h:form id="formFiles" >
                         <p:commandButton id="downloadLink" value="Download" ajax="false" icon="ui-icon-arrowthichk-s">
                             <p:fileDownload value="#{fileController.downloadFile}" />
@@ -78,14 +85,6 @@
 
                             <p:column headerText="#{msg['global.date']}">
                                 #{file.date}
-                            </p:column>
-
-                            <p:column>
-                                <h:panelGroup rendered="#{file.type=='Directory'}">
-                                    <button directory="#{file.idfile}" class="pull-right btn btn-info sharefolder" data-toggle="modal" data-target="#shareFolderModal">
-                                        #{msg['directory.share']}
-                                    </button>  
-                                </h:panelGroup>
                             </p:column>
 
                         </p:dataTable>
