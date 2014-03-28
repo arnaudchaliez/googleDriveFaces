@@ -30,6 +30,10 @@ public class FileService {
     public List getFileUser(int idUser) {
         return fileDAO.getFilesByUserId(idUser);
     }
+    
+    public List getSharedFileUser(int idUser) {
+        return fileDAO.getSharedFilesByUserId(idUser);
+    }
 
     public List getFilesDirectoryUser(int idUser, int idDirectory) {
         return fileDAO.getFilesDirectoryByUserId(idUser, idDirectory);
