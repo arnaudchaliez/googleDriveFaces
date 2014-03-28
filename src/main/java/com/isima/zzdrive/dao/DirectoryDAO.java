@@ -24,7 +24,7 @@ public class DirectoryDAO {
 
     public List getDirectoriesByUserId(int idOwner) {
         List list = getSessionFactory().getCurrentSession()
-                .createQuery("from directory as directory where directory.idowner = :idowner")
+                .createQuery("from file as directory where directory.idowner = :idowner")
                 .setParameter("idowner", idOwner).list();
         return list;
     }
@@ -43,7 +43,7 @@ public class DirectoryDAO {
 
     public Directory getDirectoryById(int id) {
         List list = getSessionFactory().getCurrentSession()
-                .createQuery("from Directory where id=?")
+                .createQuery("from Directory f where f.idfile=?")
                 .setParameter(0, id).list();
         if (list.size() > 0) {
             return (Directory) list.get(0);

@@ -29,6 +29,14 @@ public class FileDAO {
         return list;
     }
 
+    public List getFilesDirectoryByUserId(int idOwner, int idDirectory) {
+        List list = getSessionFactory().getCurrentSession()
+                .createQuery("from File as file where file.idowner = :idowner and file.iddirectory = :directory")
+                .setParameter("idowner", idOwner)
+                .setParameter("directory", idDirectory).list();
+        return list;
+    }
+
     public List getFilesByDirectory(int idDirectory) {
         List list = getSessionFactory().getCurrentSession()
                 .createQuery("from File as file where file.iddirectory = :iddirectory")

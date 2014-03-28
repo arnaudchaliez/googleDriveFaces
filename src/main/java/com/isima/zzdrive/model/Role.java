@@ -23,7 +23,7 @@ public class Role implements java.io.Serializable {
 
     private int idrole;
     private String name;
-    private Set<User> users = new HashSet<User>(0);
+    private Set<User> users = new HashSet<>(0);
 
     public Role() {
     }

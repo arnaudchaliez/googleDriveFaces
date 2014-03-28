@@ -70,10 +70,10 @@ public class User implements java.io.Serializable {
         @JoinColumn(name = "iduser", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "idrole", nullable = false, updatable = false)}
     )
-    private Set<Role> roles = new HashSet<Role>(0);
+    private Set<Role> roles = new HashSet<>(0);
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<Access> accesses = new HashSet<Access>(0);
+    private Set<Access> accesses = new HashSet<>(0);
 
     public User() {
     }

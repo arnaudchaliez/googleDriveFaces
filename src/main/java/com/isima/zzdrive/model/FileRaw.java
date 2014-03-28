@@ -7,14 +7,9 @@
 package com.isima.zzdrive.model;
 
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +17,7 @@ import lombok.Setter;
 public class FileRaw extends File implements java.io.Serializable {
 
     public final static String TYPE = "File";
-    
+
     @Getter
     @Setter
     @Lob
@@ -33,7 +28,7 @@ public class FileRaw extends File implements java.io.Serializable {
     }
 
     public FileRaw(int iddirectory, String type, int idowner) {
-        super(iddirectory, "File" , idowner);
+        super(iddirectory, "File", idowner);
     }
 
     public FileRaw(String name, int iddirectory, String type, byte[] content, int idowner) {

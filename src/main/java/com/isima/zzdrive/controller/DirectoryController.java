@@ -2,15 +2,13 @@
  * ZZDrive - 2014
  *
  * @author Arnaud CHALIEZ
- * @author Jérémy BOUNY
+ * @author Jï¿½rï¿½my BOUNY
  */
 package com.isima.zzdrive.controller;
 
 import com.isima.zzdrive.bean.DirectoryBean;
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.Directory;
-import com.isima.zzdrive.model.FileRaw;
-import com.isima.zzdrive.model.User;
 import com.isima.zzdrive.service.DirectoryService;
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
@@ -25,7 +23,6 @@ import lombok.Setter;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean(name = "directoryController")
-//@SessionScoped
 public class DirectoryController {
 
     @Getter
@@ -63,6 +60,15 @@ public class DirectoryController {
         if (name != null) {
             Directory directory = new Directory(name, idParent, idOwner);
 
+            try {
+                directoryService.createDirectory(directory);
+                created = true;
+                msg = new FacesMessage("Succesful ", directory.getName() + " is created.");
+            } catch (Exception e) {
+                msg = new FacesMessage("Error", name + " cannot be created.");
+            } finally {
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
 
             context.addCallbackParam("created", created);
         }

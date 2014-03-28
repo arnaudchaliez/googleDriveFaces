@@ -31,6 +31,10 @@ public class FileService {
         return fileDAO.getFilesByUserId(idUser);
     }
 
+    public List getFilesDirectoryUser(int idUser, int idDirectory) {
+        return fileDAO.getFilesDirectoryByUserId(idUser, idDirectory);
+    }
+
     @Transactional(readOnly = false)
     public void saveFile(File file) {
         fileDAO.addFile(file);

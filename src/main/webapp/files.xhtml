@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      
+
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
@@ -14,11 +14,18 @@
 
         <ui:define name="content">
 
+            <f:metadata>
+                <f:viewParam name="file" value="#{directoryBean.directory}" />
+            </f:metadata>
+
             <ol class="breadcrumb breadcrumb-arrow">
                 <c:forEach items="${directoryBean.parents}" var="parent" varStatus="loopStatus">
                     <ui:fragment rendered="#{!loopStatus.last}">
                         <li>
-                            <h:link outcome="files"><i class="glyphicon glyphicon-folder-close"></i> ${parent.value}</h:link>
+                            <h:link outcome="files">
+                                <i class="glyphicon glyphicon-folder-close"></i> ${parent.value}
+                                <f:param name="file" value="#{parent.key}"/>
+                            </h:link>
                         </li>
                     </ui:fragment>
                     <ui:fragment rendered="#{loopStatus.last}">
@@ -30,7 +37,7 @@
             </ol>
 
             <h:panelGroup layout="block" id="left">
-                    <ui:include src="components/upload.xhtml" />
+                <ui:include src="components/upload.xhtml" />
             </h:panelGroup>
 
             <ui:include src="components/createFolderModal.xhtml" />
@@ -47,15 +54,17 @@
                         <p:column headerText="#{msg['global.type']}">
                             #{file.type}
                         </p:column>
-                        
+
                         <p:column headerText="#{msg['global.name']}">
-                            #{file.name}
+                            <h:link outcome="files" value="#{file.name}">
+                                <f:param name="file" value="#{file.idfile}"/>
+                            </h:link>
                         </p:column>
 
                         <p:column headerText="#{msg['global.size']}">
                             #{file.size}
                         </p:column>
-                        
+
                         <p:column headerText="#{msg['global.date']}">
                             #{file.date}
                         </p:column>

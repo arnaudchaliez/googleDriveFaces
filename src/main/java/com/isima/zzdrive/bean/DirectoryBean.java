@@ -40,6 +40,7 @@ public class DirectoryBean implements Serializable {
     }
 
     public void setCurrentIdDirectory(Integer currentDirectory) {
+
         if (null == currentDirectory) {
             return;
         }
@@ -56,9 +57,17 @@ public class DirectoryBean implements Serializable {
             }
 
             do {
-                parents.add(0, new AbstractMap.SimpleEntry(parent.getIddirectory(), parent.getName()));
-            } while (parent.getIddirectory() != parent.getIdparent()
-                    && (parent = getDirectoryService().getDirectoryById(parent.getIdparent())) != null);
+                parents.add(0, new AbstractMap.SimpleEntry(parent.getIdfile(), parent.getName()));
+            } while (parent.getIdfile() != parent.getIddirectory()
+                    && (parent = getDirectoryService().getDirectoryById(parent.getIddirectory())) != null);
         }
+    }
+
+    public int getDirectory() {
+        return currentDirectory;
+    }
+
+    public void setDirectory(int directory) {
+        setCurrentIdDirectory(directory);
     }
 }

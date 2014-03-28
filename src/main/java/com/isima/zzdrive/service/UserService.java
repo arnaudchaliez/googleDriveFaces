@@ -13,7 +13,6 @@ import com.isima.zzdrive.model.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
-import javax.faces.bean.ManagedProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

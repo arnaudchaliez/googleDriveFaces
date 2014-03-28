@@ -6,6 +6,7 @@
  */
 package com.isima.zzdrive.controller;
 
+import com.isima.zzdrive.bean.DirectoryBean;
 import com.isima.zzdrive.bean.UserBean;
 import com.isima.zzdrive.model.File;
 import com.isima.zzdrive.model.FileRaw;
@@ -24,55 +25,56 @@ import lombok.Setter;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
-
 
 @ManagedBean(name = "fileController")
-//@SessionScoped
-
 public class FileController implements Serializable {
 
     @Getter
     @Setter
     @ManagedProperty("#{FileService}")
     FileService fileService;
+
+    @Getter
+    @Setter
+    @ManagedProperty("#{directoryBean}")
+    private DirectoryBean directoryBean;
+
     @Getter
     @Setter
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
+
     @Getter
     @Setter
     private List<File> files;
+
     @Getter
     @Setter
     private File selectedFile;
+
     @Getter
     @Setter
     private StreamedContent streamedContent = null;
-     
+
     @PostConstruct
     private void init() {
         this.files = filesCurrentUser();
     }
 
-ut.println("------------- Files -----------");
     protected List<File> filesUser(int idUser) {
-        List<File> files = getFileService().getFileUser(idUser);
+        List<File> files = getFileService().getFilesDirectoryUser(idUser, directoryBean.getCurrentIdDirectory());
         return files;
     }
-
 
     public List<File> filesCurrentUser() {
         List<File> files = filesUser(userBean.getIdUser());
         return files;
     }
 
-  =
     public StreamedContent downloadFile() {
         InputStream stream;
-        if (selectedFile != null && selectedFile.getType().equals(FileRaw.TYPE) ) {
-            FileRaw file = (FileRaw)selectedFile;
+        if (selectedFile != null && selectedFile.getType().equals(FileRaw.TYPE)) {
+            FileRaw file = (FileRaw) selectedFile;
             stream = new ByteArrayInputStream(file.getContent());
             streamedContent = new DefaultStreamedContent(stream, "text/plain", file.getName());
         } else {
@@ -80,9 +82,6 @@ ut.println("------------- Files -----------");
         }
         return streamedContent;
     }
-
-
-
 
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage msg = null;

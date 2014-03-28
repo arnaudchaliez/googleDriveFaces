@@ -59,7 +59,6 @@ public class LanguageController implements Serializable {
         }
     }
 
-    //value change event listener
     public void countryLocaleCodeChanged(ValueChangeEvent e) {
         String newLocaleValue = e.getNewValue().toString();
         setLocaleCode(newLocaleValue);
